@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Layout from "./components/common/Layout";
+import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import OurStory from "./pages/OurStory";
 import ImpactAreas from "./pages/ImpactAreas";
-import Strategy from "./pages/Strategy";
+import Overview from "./pages/Overview";
+import OurPeople from "./pages/OurPeople"
 import Updates from "./pages/Updates";
 import Donate from "./pages/Donate";
 import Contact from "./pages/Contact";
@@ -19,7 +20,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/our-story" element={<OurStory />} />
             <Route path="/impact" element={<ImpactAreas />} />
-            <Route path="/strategy" element={<Strategy />} />
+            <Route path="/overview" element={<Overview />} />
+            <Route path="/our-people" element={<OurPeople />} />
             <Route path="/updates" element={<Updates />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/contact" element={<Contact />} />

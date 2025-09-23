@@ -1,348 +1,324 @@
 import React, { useState } from 'react';
-import { Calendar, User, ArrowRight, FileText, Play, Mic, BookOpen, Video, BarChart3, Heart } from 'lucide-react';
+import { ArrowRight, Calendar, FileText, Search, Filter, ExternalLink } from 'lucide-react';
 
-const Updates: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+const LatestUpdatesPage: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<'all' | 'news' | 'research' | 'reports'>('all');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const categories = [
-    { id: 'all', label: 'All Updates', icon: FileText, count: 12 },
-    { id: 'news', label: 'News', icon: Mic, count: 4 },
-    { id: 'stories', label: 'Stories', icon: BookOpen, count: 3 },
-    { id: 'videos', label: 'Videos', icon: Video, count: 2 },
-    { id: 'research', label: 'Research', icon: BarChart3, count: 2 },
-    { id: 'reports', label: 'Reports', icon: FileText, count: 1 }
-  ];
-
-  const allUpdates = [
-    // News
+  // Mock data for updates
+  const updates = [
     {
       id: 1,
       type: 'news',
-      title: 'New Ubuntu-Afya Kiosk Launch in Western Kenya',
-      excerpt: 'We are excited to announce the opening of our 25th healthcare kiosk in collaboration with local communities in Bungoma County.',
-      date: '2024-01-15',
-      author: 'Dr. Sarah Chen',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3',
-      readTime: '3 min read',
-      tags: ['New Kiosk', 'Expansion', 'Community Health']
+      title: 'OneWorld Health Expands Operations to Three New Communities in Rural Uganda',
+      excerpt: 'New partnerships with local health groups bring essential care closer to families in remote areas.',
+      date: '2025-09-15',
+      author: 'Communications Team',
+      image: 'uganda-expansion.jpg',
+      featured: true,
+      tags: ['Uganda', 'Expansion', 'Community Health']
     },
     {
       id: 2,
-      type: 'news',
-      title: 'Partnership with Ministry of Health Strengthened',
-      excerpt: 'New memorandum of understanding signed to integrate Ubuntu-Afya kiosks into national health system.',
-      date: '2024-01-10',
-      author: 'Programs Team',
-      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3',
-      readTime: '2 min read',
-      tags: ['Partnership', 'Government', 'Integration']
+      type: 'research',
+      title: 'Impact Study: Maternal Mortality Reduction in OneWorld Health Partner Communities',
+      excerpt: 'Three-year longitudinal study shows 40% reduction in maternal deaths across program areas.',
+      date: '2025-09-10',
+      author: 'Dr. Sarah Martinez, Research Director',
+      image: 'maternal-health-study.jpg',
+      featured: true,
+      tags: ['Maternal Health', 'Research', 'Impact']
     },
-
-    // Stories
     {
       id: 3,
-      type: 'stories',
-      title: 'From Patient to Health Worker: Mary\'s Journey',
-      excerpt: 'How one woman\'s experience with maternal care inspired her to become a community health worker.',
-      date: '2024-01-12',
-      author: 'Storytelling Team',
-      image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3',
-      readTime: '5 min read',
-      tags: ['Transformation', 'Women Empowerment', 'Community']
+      type: 'reports',
+      title: '2024 Annual Impact Report: Building Healthier Communities Together',
+      excerpt: 'Comprehensive overview of our achievements, challenges, and goals for sustainable healthcare.',
+      date: '2025-09-01',
+      author: 'OneWorld Health Team',
+      image: 'annual-report-2024.jpg',
+      featured: false,
+      tags: ['Annual Report', 'Impact', 'Healthcare Systems']
     },
     {
       id: 4,
-      type: 'stories',
-      title: 'How STONE-HMIS® Saved Little Kamau',
-      excerpt: 'Real-time tracking system enables rapid response for a child with pneumonia in remote village.',
-      date: '2024-01-05',
-      author: 'Field Team',
-      image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3',
-      readTime: '4 min read',
-      tags: ['Technology', 'Child Health', 'Success Story']
+      type: 'news',
+      title: 'New Partnership with Kenya Medical Training College Strengthens Local Capacity',
+      excerpt: 'Collaboration aims to train 200+ community health workers over the next two years.',
+      date: '2025-08-28',
+      author: 'Partnership Team',
+      image: 'kenya-partnership.jpg',
+      featured: false,
+      tags: ['Kenya', 'Training', 'Partnerships']
     },
-
-    // Videos
     {
       id: 5,
-      type: 'videos',
-      title: 'A Day in the Life: Community Health Worker',
-      excerpt: 'Follow Grace as she provides care and education to families in her community.',
-      date: '2024-01-08',
-      author: 'Media Team',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3',
-      readTime: '2 min watch',
-      tags: ['Documentary', 'Community Workers', 'Daily Life'],
-      videoUrl: '#'
+      type: 'research',
+      title: 'Community-Led Healthcare: Lessons from Five Years of Ubuntu Afya Kiosks',
+      excerpt: 'Research findings on sustainability and effectiveness of community-owned health facilities.',
+      date: '2025-08-20',
+      author: 'Dr. Michael Chen, Health Systems Researcher',
+      image: 'ubuntu-research.jpg',
+      featured: false,
+      tags: ['Ubuntu Afya', 'Community Ownership', 'Sustainability']
     },
     {
       id: 6,
-      type: 'videos',
-      title: 'STONE-HMIS® System Demonstration',
-      excerpt: 'See how our digital health system improves patient care and data management.',
-      date: '2024-01-03',
-      author: 'Tech Team',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3',
-      readTime: '3 min watch',
-      tags: ['Technology', 'Demo', 'Digital Health'],
-      videoUrl: '#'
-    },
-
-    // Research
-    {
-      id: 7,
-      type: 'research',
-      title: 'STONE-HMIS® Impact Study Published in Lancet',
-      excerpt: 'Peer-reviewed research demonstrates 40% improvement in patient follow-up rates.',
-      date: '2024-01-18',
-      author: 'Research Team',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3',
-      readTime: '8 min read',
-      tags: ['Publication', 'Data', 'Evidence']
-    },
-    {
-      id: 8,
-      type: 'research',
-      title: 'Community Ownership Model: 3-Year Outcomes',
-      excerpt: 'Analysis shows sustained health improvements in communities with co-owned kiosks.',
-      date: '2024-01-14',
-      author: 'Dr. Amara Okafor',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3',
-      readTime: '6 min read',
-      tags: ['Study', 'Sustainability', 'Outcomes']
-    },
-
-    // Reports
-    {
-      id: 9,
       type: 'reports',
-      title: '2023 Annual Impact Report',
-      excerpt: 'Comprehensive overview of our achievements and milestones in transforming rural healthcare.',
-      date: '2024-01-02',
-      author: 'Executive Director',
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3',
-      readTime: '10 min read',
-      tags: ['Annual Report', 'Impact', 'Metrics'],
-      downloadUrl: '#'
+      title: 'Nicaragua Health System Strengthening: Mid-Year Progress Report',
+      excerpt: 'Updates on infrastructure improvements and capacity building initiatives.',
+      date: '2025-08-15',
+      author: 'Nicaragua Country Team',
+      image: 'nicaragua-progress.jpg',
+      featured: false,
+      tags: ['Nicaragua', 'Health Systems', 'Progress Report']
     }
   ];
 
-  const filteredUpdates = activeCategory === 'all' 
-    ? allUpdates 
-    : allUpdates.filter(update => update.type === activeCategory);
+  const filteredUpdates = updates.filter(update => {
+    const matchesFilter = activeFilter === 'all' || update.type === activeFilter;
+    const matchesSearch = update.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         update.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         update.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+    return matchesFilter && matchesSearch;
+  });
+
+  const featuredUpdates = filteredUpdates.filter(update => update.featured);
+  const regularUpdates = filteredUpdates.filter(update => !update.featured);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
     });
   };
 
   const getTypeColor = (type: string) => {
-    const colors = {
-      news: 'bg-blue-100 text-blue-800',
-      stories: 'bg-green-100 text-green-800',
-      videos: 'bg-purple-100 text-purple-800',
-      research: 'bg-orange-100 text-orange-800',
-      reports: 'bg-red-100 text-red-800'
-    };
-    return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+    switch (type) {
+      case 'news': return 'bg-blue-100 text-blue-800';
+      case 'research': return 'bg-green-100 text-green-800';
+      case 'reports': return 'bg-orange-100 text-orange-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
   };
 
-  const getTypeIcon = (type: string) => {
-    const icons = {
-      news: Mic,
-      stories: BookOpen,
-      videos: Video,
-      research: BarChart3,
-      reports: FileText
-    };
-    return icons[type as keyof typeof icons] || FileText;
+  const getTypeLabel = (type: string) => {
+    return type.charAt(0).toUpperCase() + type.slice(1);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-purple-900 via-blue-800 to-green-800">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative container mx-auto px-6 text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Latest Updates</h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Stay informed with our latest news, inspiring stories, research findings, and impact reports from the field.
-          </p>
-        </div>
-      </section>
-
-      {/* Category Filter */}
-      <section className="py-8 bg-white border-b border-gray-200 sticky top-20 z-40">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap gap-4 justify-center">
-            {categories.map((category) => {
-              const IconComponent = category.icon;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-200 ${
-                    activeCategory === category.id
-                      ? 'bg-blue-600 text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <IconComponent className="w-4 h-4" />
-                  <span>{category.label}</span>
-                  <span className={`px-2 py-1 rounded-full text-xs ${
-                    activeCategory === category.id
-                      ? 'bg-white/20 text-white'
-                      : 'bg-gray-300 text-gray-700'
-                  }`}>
-                    {category.count}
-                  </span>
-                </button>
-              );
-            })}
+    <div className="min-h-screen bg-white">
+      {/* Header Section */}
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Latest Updates label */}
+          <div className="mb-8">
+            <span className="bg-yellow-400 text-black font-bold px-4 py-2 text-sm uppercase tracking-wide">
+              LATEST UPDATES
+            </span>
           </div>
-        </div>
-      </section>
-
-      {/* Featured Story */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl p-8 md:p-12 border border-blue-200">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <span className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mb-4">
-                  <Heart className="w-4 h-4" />
-                  <span>Featured Story</span>
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  How Community Ownership Transformed Healthcare in Rural Kenya
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Discover how our partnership with local self-help groups led to sustainable healthcare solutions that serve over 290,000 patients annually.
-                </p>
-                <button className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold">
-                  <span>Read the Full Story</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3" 
-                  alt="Featured Story"
-                  className="rounded-2xl shadow-lg"
-                />
-                <button className="absolute inset-0 flex items-center justify-center group">
-                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-200">
-                    <Play className="w-6 h-6 text-blue-600 ml-1" />
-                  </div>
-                </button>
+          
+          <div className="grid lg:grid-cols-2 gap-16">
+            <div>
+              <h1 className="text-5xl lg:text-6xl font-bold text-teal-800 leading-tight mb-8">
+                News, Research, & Reports
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Stay informed about our latest developments, research findings, and impact reports. 
+                Discover how we're advancing global health through community-driven solutions.
+              </p>
+            </div>
+            
+            <div className="flex items-center">
+              <div className="w-full space-y-6">
+                {/* Search Bar */}
+                <div className="relative">
+                  <Search className="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search updates..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-teal-500 focus:outline-none"
+                  />
+                </div>
+                
+                {/* Filter Buttons */}
+                <div className="flex flex-wrap gap-3">
+                  {[
+                    { key: 'all', label: 'All Updates' },
+                    { key: 'news', label: 'News' },
+                    { key: 'research', label: 'Research' },
+                    { key: 'reports', label: 'Reports' }
+                  ].map(({ key, label }) => (
+                    <button
+                      key={key}
+                      onClick={() => setActiveFilter(key as any)}
+                      className={`px-4 py-2 rounded-full font-semibold transition-colors ${
+                        activeFilter === key
+                          ? 'bg-teal-600 text-white'
+                          : 'bg-white text-teal-600 border-2 border-teal-200 hover:bg-teal-50'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Updates Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredUpdates.map((update) => {
-              const TypeIcon = getTypeIcon(update.type);
-              return (
-                <article key={update.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                  <div className="relative">
-                    <img 
-                      src={update.image} 
-                      alt={update.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className={`inline-flex items-center space-x-1 px-3 py-1 rounded-full text-sm font-medium ${getTypeColor(update.type)}`}>
-                        <TypeIcon className="w-3 h-3" />
-                        <span>{update.type.charAt(0).toUpperCase() + update.type.slice(1)}</span>
-                      </span>
+      {/* Featured Updates */}
+      {featuredUpdates.length > 0 && (
+        <section className="py-16 px-6 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-12">Featured Updates</h2>
+            
+            <div className="grid lg:grid-cols-2 gap-8">
+              {featuredUpdates.map((update, index) => (
+                <article key={update.id} className={`group cursor-pointer ${index === 0 ? 'lg:row-span-2' : ''}`}>
+                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    {/* Image */}
+                    <div className={`bg-gray-300 flex items-center justify-center ${
+                      index === 0 ? 'h-80' : 'h-48'
+                    }`}>
+                      <span className="text-gray-500">Featured Image Placeholder</span>
                     </div>
-                    {update.type === 'videos' && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-200">
-                          <Play className="w-5 h-5 text-purple-600 ml-0.5" />
+                    
+                    {/* Content */}
+                    <div className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getTypeColor(update.type)}`}>
+                          {getTypeLabel(update.type)}
+                        </span>
+                        <div className="flex items-center text-gray-500 text-sm">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          {formatDate(update.date)}
                         </div>
                       </div>
-                    )}
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2 text-gray-500 text-sm">
-                        <Calendar className="w-4 h-4" />
-                        <span>{formatDate(update.date)}</span>
-                      </div>
-                      <span className="text-gray-400 text-sm">{update.readTime}</span>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors">
-                      {update.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      {update.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-2 text-gray-500">
-                        <User className="w-4 h-4" />
-                        <span className="text-sm">{update.author}</span>
+                      
+                      <h3 className={`font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors ${
+                        index === 0 ? 'text-2xl' : 'text-xl'
+                      }`}>
+                        {update.title}
+                      </h3>
+                      
+                      <p className="text-gray-600 mb-4 leading-relaxed">
+                        {update.excerpt}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-500">By {update.author}</span>
+                        <div className="flex items-center text-teal-600 font-semibold group-hover:text-teal-700">
+                          Read More
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </div>
                       </div>
                     </div>
-
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {update.tags.map((tag, index) => (
-                        <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <button className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold group">
-                      <span>
-                        {update.type === 'videos' ? 'Watch Now' : 
-                         update.type === 'reports' ? 'Download Report' : 'Read More'}
-                      </span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                    </button>
                   </div>
                 </article>
-              );
-            })}
+              ))}
+            </div>
           </div>
+        </section>
+      )}
+
+      {/* All Updates Grid */}
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {regularUpdates.length > 0 && (
+            <>
+              <h2 className="text-3xl font-bold text-gray-900 mb-12">All Updates</h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {regularUpdates.map((update) => (
+                  <article key={update.id} className="group cursor-pointer">
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                      {/* Image */}
+                      <div className="h-48 bg-gray-300 flex items-center justify-center">
+                        <span className="text-gray-500 text-sm">Update Image</span>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getTypeColor(update.type)}`}>
+                            {getTypeLabel(update.type)}
+                          </span>
+                          <div className="flex items-center text-gray-500 text-sm">
+                            <Calendar className="w-4 h-4 mr-2" />
+                            {formatDate(update.date)}
+                          </div>
+                        </div>
+                        
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors">
+                          {update.title}
+                        </h3>
+                        
+                        <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                          {update.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-500">By {update.author}</span>
+                          <div className="flex items-center text-teal-600 font-semibold group-hover:text-teal-700">
+                            Read More
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* No Results */}
+          {filteredUpdates.length === 0 && (
+            <div className="text-center py-16">
+              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No updates found</h3>
+              <p className="text-gray-600">Try adjusting your search terms or filters.</p>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-green-600 text-white">
-        <div className="container mx-auto px-6 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-blue-100 mb-8">
-              Get the latest news, stories, and impact reports delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
-              />
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                Subscribe
-              </button>
-            </div>
+      <section className="py-20 px-6 bg-teal-600">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Stay Updated
+          </h2>
+          <p className="text-xl text-teal-100 mb-8">
+            Subscribe to our newsletter to receive the latest news, research findings, and impact reports directly in your inbox.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+            <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold px-6 py-3 rounded-lg transition-colors">
+              Subscribe
+            </button>
           </div>
+          
+          <p className="text-sm text-teal-200 mt-4">
+            We respect your privacy and won't share your information with third parties.
+          </p>
         </div>
       </section>
     </div>
   );
 };
 
-export default Updates;
+export default LatestUpdatesPage;

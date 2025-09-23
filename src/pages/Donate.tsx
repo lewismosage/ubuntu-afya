@@ -1,361 +1,379 @@
 import React, { useState } from 'react';
-import { Heart, CreditCard, Smartphone, Building2, Users, GraduationCap, CheckCircle } from 'lucide-react';
-import toast from 'react-hot-toast';
+import { Heart, Users, TrendingUp, ArrowRight, Calendar, Building, Gift,} from 'lucide-react';
 
-const Donate: React.FC = () => {
-  const [selectedAmount, setSelectedAmount] = useState(100);
-  const [customAmount, setCustomAmount] = useState('');
-  const [donationType, setDonationType] = useState('one-time');
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
-    country: '',
-    paymentMethod: 'card'
-  });
+const DonatePage: React.FC = () => {
+  const [donationType, setDonationType] = useState<'onetime' | 'monthly'>('onetime');
+  const [selectedAmount, setSelectedAmount] = useState<number>(50);
+  const [customAmount, setCustomAmount] = useState<string>('');
 
-  const donationAmounts = [25, 50, 100, 250, 500, 1000];
+  const predefinedAmounts = [50, 100, 250, 500];
 
-  const impactExamples = [
-    {
-      amount: 25,
-      impact: 'Provides basic health screening for 5 community members',
-      icon: Users
-    },
-    {
-      amount: 100,
-      impact: 'Funds medical supplies for one kiosk for a month',
-      icon: Building2
-    },
-    {
-      amount: 250,
-      impact: 'Sponsors training for one community health worker',
-      icon: GraduationCap
-    },
-    {
-      amount: 500,
-      impact: 'Supports maternal care services for 20 women',
-      icon: Heart
-    }
-  ];
-
-  const getCurrentImpact = () => {
-    const amount = customAmount ? parseInt(customAmount) : selectedAmount;
-    return impactExamples.reduce((closest, example) => {
-      return Math.abs(example.amount - amount) < Math.abs(closest.amount - amount) 
-        ? example 
-        : closest;
-    });
+  const handleAmountSelect = (amount: number) => {
+    setSelectedAmount(amount);
+    setCustomAmount('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success('Thank you for your generous donation! You will receive a confirmation email shortly.');
+  const handleCustomAmountChange = (value: string) => {
+    setCustomAmount(value);
+    setSelectedAmount(0);
   };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  // Get current impact and create the icon component
-  const currentImpact = getCurrentImpact();
-  const ImpactIcon = currentImpact.icon;
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="section-padding gradient-bg text-white">
-        <div className="container-custom text-center animate-fade-in-up">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Support Our Mission
-          </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-            With your support, Ubuntu Afya can reach more communities, expand digital health tools, 
-            and continue training health workers who deliver lifesaving care.
-          </p>
-        </div>
-      </section>
-
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Donation Form */}
-            <div className="lg:col-span-2">
-              <div className="card animate-fade-in-left">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Make a Donation</h2>
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Donation Type */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-4">
-                      Donation Type
-                    </label>
-                    <div className="flex space-x-4">
-                      <button
-                        type="button"
-                        onClick={() => setDonationType('one-time')}
-                        className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors duration-200 ${
-                          donationType === 'one-time'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        One-time
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setDonationType('recurring')}
-                        className={`flex-1 py-3 px-4 rounded-lg font-medium transition-colors duration-200 ${
-                          donationType === 'recurring'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        Monthly
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Amount Selection */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-4">
-                      Select Amount
-                    </label>
-                    <div className="grid grid-cols-3 gap-4 mb-4">
-                      {donationAmounts.map((amount) => (
-                        <button
-                          key={amount}
-                          type="button"
-                          onClick={() => {
-                            setSelectedAmount(amount);
-                            setCustomAmount('');
-                          }}
-                          className={`py-3 px-4 rounded-lg font-medium transition-colors duration-200 ${
-                            selectedAmount === amount && !customAmount
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                          }`}
-                        >
-                          ${amount}
-                        </button>
-                      ))}
-                    </div>
-                    <input
-                      type="number"
-                      placeholder="Custom amount"
-                      value={customAmount}
-                      onChange={(e) => {
-                        setCustomAmount(e.target.value);
-                        setSelectedAmount(0);
-                      }}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-
-                  {/* Personal Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      name="firstName"
-                      placeholder="First Name"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      required
-                      className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                    <input
-                      type="text"
-                      name="lastName"
-                      placeholder="Last Name"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      required
-                      className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-
-                  {/* Payment Method */}
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-4">
-                      Payment Method
-                    </label>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <button
-                        type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'card' }))}
-                        className={`flex items-center justify-center space-x-2 py-3 px-4 border rounded-lg transition-colors duration-200 ${
-                          formData.paymentMethod === 'card'
-                            ? 'border-blue-600 bg-blue-50 text-blue-600'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        <CreditCard className="w-5 h-5" />
-                        <span>Credit Card</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'paypal' }))}
-                        className={`flex items-center justify-center space-x-2 py-3 px-4 border rounded-lg transition-colors duration-200 ${
-                          formData.paymentMethod === 'paypal'
-                            ? 'border-blue-600 bg-blue-50 text-blue-600'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        <span>PayPal</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'mpesa' }))}
-                        className={`flex items-center justify-center space-x-2 py-3 px-4 border rounded-lg transition-colors duration-200 ${
-                          formData.paymentMethod === 'mpesa'
-                            ? 'border-blue-600 bg-blue-50 text-blue-600'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        <Smartphone className="w-5 h-5" />
-                        <span>M-Pesa</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full btn-primary text-lg py-4 flex items-center justify-center space-x-2"
-                  >
-                    <Heart className="w-5 h-5" />
-                    <span>
-                      Donate ${customAmount || selectedAmount} {donationType === 'recurring' ? '/month' : ''}
-                    </span>
-                  </button>
-                </form>
-              </div>
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-8">
-              {/* Impact Summary */}
-              <div className="card animate-fade-in-right">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Your Impact</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <ImpactIcon className="w-6 h-6 text-blue-600" />
-                    <span className="text-gray-700">{currentImpact.impact}</span>
-                  </div>
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <p className="text-sm text-blue-800">
-                      Every dollar you donate goes directly to supporting community health initiatives.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Impact Examples */}
-              <div className="card animate-fade-in-right" style={{ animationDelay: '0.2s' }}>
-                <h3 className="text-xl font-bold text-gray-900 mb-6">How Your Donation Helps</h3>
-                <div className="space-y-4">
-                  {impactExamples.map((example, index) => {
-                    const ExampleIcon = example.icon;
-                    return (
-                      <div key={index} className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <span className="text-white text-sm font-bold">${example.amount}</span>
-                        </div>
-                        <p className="text-sm text-gray-700">{example.impact}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Security Notice */}
-              <div className="card bg-green-50 border border-green-200 animate-fade-in-right" style={{ animationDelay: '0.4s' }}>
-                <div className="flex items-center space-x-3 mb-4">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
-                  <h3 className="text-lg font-semibold text-green-800">Secure Donation</h3>
-                </div>
-                <p className="text-sm text-green-700">
-                  Your donation is processed securely through our encrypted payment system. 
-                  All contributions are tax-deductible to the full extent allowed by law.
+    <div className="min-h-screen bg-white">
+      {/* Hero Section with Donation Form */}
+      <section className="py-16 px-6 bg-teal-700 text-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Donate label */}
+          <div className="mb-8">
+            <span className="bg-yellow-400 text-black font-bold px-4 py-2 text-sm uppercase tracking-wide">
+              DONATE
+            </span>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left side - Content */}
+            <div>
+              <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-8">
+                Every Dollar Creates Hope
+              </h1>
+              
+              <div className="space-y-6 text-lg">
+                <p>
+                  When you give to Ubuntu Afya, you're not just donating, you're delivering 
+                  life-changing care to people who would otherwise go without.
+                </p>
+                
+                <p>
+                  You're helping mothers deliver safely. Children access treatment. Families build 
+                  trust in a system that will be there tomorrow—and for generations to come.
                 </p>
               </div>
             </div>
+
+            {/* Right side - Donation Form */}
+            <div className="bg-white text-gray-900 p-8 rounded-2xl shadow-2xl">
+              <h3 className="text-2xl font-bold mb-6 text-center">Choose Your Gift</h3>
+              
+              {/* Donation Type Toggle */}
+              <div className="flex mb-6">
+                <button
+                  onClick={() => setDonationType('onetime')}
+                  className={`flex-1 py-3 px-4 font-semibold rounded-l-lg border-2 transition-colors ${
+                    donationType === 'onetime'
+                      ? 'bg-teal-500 text-white border-teal-500'
+                      : 'bg-white text-teal-500 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  One Time
+                </button>
+                <button
+                  onClick={() => setDonationType('monthly')}
+                  className={`flex-1 py-3 px-4 font-semibold rounded-r-lg border-2 border-l-0 transition-colors ${
+                    donationType === 'monthly'
+                      ? 'bg-teal-500 text-white border-teal-500'
+                      : 'bg-white text-teal-500 border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <Calendar className="w-4 h-4 inline mr-2" />
+                  Monthly
+                </button>
+              </div>
+
+              {/* Amount Selection */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {predefinedAmounts.map((amount) => (
+                  <button
+                    key={amount}
+                    onClick={() => handleAmountSelect(amount)}
+                    className={`py-3 px-4 font-semibold rounded-lg border-2 transition-colors ${
+                      selectedAmount === amount
+                        ? 'bg-teal-500 text-white border-teal-500'
+                        : 'bg-white text-gray-700 border-gray-300 hover:border-teal-300'
+                    }`}
+                  >
+                    ${amount}
+                  </button>
+                ))}
+              </div>
+
+              {/* Custom Amount Input */}
+              <div className="mb-8">
+                <input
+                  type="text"
+                  placeholder="Other"
+                  value={customAmount}
+                  onChange={(e) => handleCustomAmountChange(e.target.value)}
+                  className="w-full py-3 px-4 border-2 border-gray-300 rounded-lg focus:border-teal-500 focus:outline-none text-lg"
+                />
+              </div>
+
+              {/* Donate Button */}
+              <button className="w-full bg-coral-500 hover:bg-coral-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors">
+                Give ${customAmount || selectedAmount}
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Alternative Ways to Give */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-custom">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Other Ways to <span className="text-gradient">Support</span>
+      {/* Your Donation Makes a Difference Section */}
+      <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left side - Content */}
+            <div>
+              <h2 className="text-4xl font-bold text-teal-800 mb-8">
+                Your Donation Makes a Difference
+              </h2>
+              
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+                <p>
+                  We believe in solutions that last—and grow. With your support, we don't just treat symptoms. We 
+                  strengthen healthcare systems that empower communities for generations.
+                </p>
+                
+                <p>
+                  Every project we launch is led locally, built for sustainability, and supported to evolve with the needs of 
+                  the people it serves.
+                </p>
+                
+                <p>
+                  Our model is designed to be sustainable—but that doesn't mean it stops needing support. Patient fees 
+                  cover daily operations. But your support is essential to help local providers, expand essential programs, 
+                  upgrade equipment, and build new facilities.
+                </p>
+                
+                <p className="font-semibold text-teal-800">
+                  This is how we grow from access to excellence.
+                </p>
+                
+                <div className="space-y-2 text-gray-600">
+                  <p>This isn't just infrastructure—it's transformation.</p>
+                  <p>Not just construction, but connection.</p>
+                  <p>Not just treatment—but health systems that last.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Image placeholder */}
+            <div className="h-96 bg-gray-300 rounded-lg flex items-center justify-center">
+              <span className="text-gray-500 text-lg">Community Impact Image</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Monthly Giving and Corporate Partnerships */}
+      <section className="py-20 px-6 bg-teal-600">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Monthly Giving */}
+            <div className="bg-teal-500 p-8 rounded-2xl text-white">
+              <div className="flex items-start justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Join our Monthly Giving Program
+                  </h3>
+                  <p className="text-xl font-semibold text-yellow-400 mb-4">
+                    Invest in Long-Term Impact
+                  </p>
+                  <p className="text-teal-100 leading-relaxed mb-6">
+                    By becoming a monthly giver, you're providing a steady stream of 
+                    support that helps us not just respond to health crises but implement 
+                    sustained change. Monthly donations help us plan for the future and continue providing 
+                    care long after the initial need is met.
+                  </p>
+                  <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center">
+                    Monthly Giving
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </button>
+                </div>
+              </div>
+              
+              {/* Image placeholder */}
+              <div className="h-48 bg-teal-400 rounded-lg flex items-center justify-center mt-6">
+                <span className="text-teal-700 text-sm">Monthly Program Image</span>
+              </div>
+            </div>
+
+            {/* Corporate Partnerships */}
+            <div>
+              {/* Image placeholder */}
+              <div className="h-48 bg-gray-300 rounded-lg flex items-center justify-center mb-6">
+                <span className="text-gray-500 text-sm">Corporate Partnership Image</span>
+              </div>
+              
+              <div className="text-white">
+                <h3 className="text-2xl font-bold mb-4">
+                  Explore Corporate Partnerships
+                </h3>
+                <p className="text-xl font-semibold text-yellow-400 mb-4">
+                  Amplify Your Company's Impact
+                </p>
+                <p className="text-teal-100 leading-relaxed mb-6">
+                  Partnering with Ubuntu Afya creates an amazing opportunity to 
+                  make a global difference. From employee giving programs to corporate 
+                  sponsorships, we work with companies large and small to create 
+                  meaningful partnerships that deliver results.
+                </p>
+                <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center">
+                  Partnership Info
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* More Giving Opportunities */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-teal-800 mb-4">
+              More Giving Opportunities
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Beyond monetary donations, there are many ways to support our mission.
+              We offer a range of programs and initiatives for donors of all kinds, from individuals to groups. 
+              Explore how you can make a difference with OneWorld Health through our giving programs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Corporate Sponsorship',
-                description: 'Partner with us to sponsor entire kiosks or programs.',
-                action: 'Learn More',
-                color: 'from-blue-500 to-blue-600'
-              },
-              {
-                title: 'In-Kind Donations',
-                description: 'Donate medical equipment, supplies, or technology.',
-                action: 'Contact Us',
-                color: 'from-purple-500 to-purple-600'
-              },
-              {
-                title: 'Fundraising Events',
-                description: 'Organize community fundraising events in your area.',
-                action: 'Get Started',
-                color: 'from-orange-500 to-orange-600'
-              }
-            ].map((option, index) => (
-              <div 
-                key={index}
-                className="card group hover:scale-105 transition-all duration-300 animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className={`w-12 h-12 bg-gradient-to-br ${option.color} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <Heart className="w-6 h-6 text-white" />
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {/* Grounded Hearts */}
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <div className="w-16 h-16 bg-coral-100 rounded-full flex items-center justify-center mb-6">
+                <Heart className="w-8 h-8 text-coral-500" />
+              </div>
+              <h3 className="text-xl font-bold text-teal-800 mb-3">
+                Grounded Hearts
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Next-Generation Change-makers
+              </p>
+              <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
+                Learn More
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+            </div>
+
+            {/* Beacon */}
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+                <TrendingUp className="w-8 h-8 text-yellow-600" />
+              </div>
+              <h3 className="text-xl font-bold text-teal-800 mb-3">
+                Beacon
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Partnering Faith and Health
+              </p>
+              <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
+                Learn More
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+            </div>
+
+            {/* Fundraise with Us */}
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <Users className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-teal-800 mb-3">
+                Fundraise with Us
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Multiply Your Impact
+              </p>
+              <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
+                Learn More
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Sponsor a Clinic */}
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                <Building className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-teal-800 mb-3">
+                Sponsor a Clinic
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Build Hope for Generations
+              </p>
+              <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
+                Learn More
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+            </div>
+
+            {/* Legacy Giving */}
+            <div className="bg-gray-50 p-8 rounded-2xl">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                <Gift className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-teal-800 mb-3">
+                Legacy Giving
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Leave a Lasting Impact
+              </p>
+              <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
+                Learn More
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stories of Hope Section */}
+      <section className="py-20 px-6 bg-teal-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-3xl font-bold text-teal-800">
+              Stories of Hope: <span className="text-teal-600">Patients</span>
+            </h2>
+            <button className="text-teal-700 font-semibold flex items-center hover:text-teal-800">
+              More Stories
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </button>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Story Image */}
+              <div className="h-64 bg-gray-300 flex items-center justify-center">
+                <span className="text-gray-500 text-lg">Patient Story Image</span>
+              </div>
+              
+              {/* Story Content */}
+              <div className="p-8">
+                <div className="flex items-center space-x-2 mb-4">
+                  <span className="text-sm text-teal-600 font-semibold">Stories of Hope</span>
+                  <span className="text-gray-400">|</span>
+                  <span className="text-sm text-gray-600">Kenya → Uganda</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{option.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{option.description}</p>
-                <button className="text-blue-600 hover:text-orange-500 font-semibold transition-colors duration-200">
-                  {option.action} →
+                
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Grace's Second Chance: A Mother's Story from Rural Uganda
+                </h3>
+                
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  Grace seemed in critical illness and her town lacked the health care in Ubuntu Afya's 
+                  maternal care in Uganda. Her premature baby received the loving treatment 
+                  and today, both mother and child are thriving.
+                </p>
+                
+                <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
+                  Read Story
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -363,4 +381,4 @@ const Donate: React.FC = () => {
   );
 };
 
-export default Donate;
+export default DonatePage;
