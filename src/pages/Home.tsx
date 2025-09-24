@@ -181,13 +181,13 @@ const Homepage: React.FC = () => {
                 title: "Volunteer", 
                 subtitle: "Join our team and make a hands-on difference",
                 icon: Users,
-                image: "https://images.pexels.com/photos/20333030/pexels-photo-20333030.jpeg"
+                image: "https://images.stockcake.com/public/1/5/a/15a725d2-c9bc-4b4f-b6f8-148dc964de54_large/doctor-treating-child-stockcake.jpg"
               },
               { 
                 title: "Partner", 
                 subtitle: "Collaborate with us for greater community impact",
                 icon: TrendingUp,
-                image: "https://images.pexels.com/photos/20333030/pexels-photo-20333030.jpeg"
+                image: "https://images.stockcake.com/public/d/f/6/df6687f3-e947-4f26-8b74-9357c9aedb60_large/doctor-consultation-meeting-stockcake.jpg"
               },
             ].map((item, index) => (
               <div
