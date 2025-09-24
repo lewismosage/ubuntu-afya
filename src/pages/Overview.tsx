@@ -1,6 +1,7 @@
 import React from "react";
 import overviewImage from "../overview.avif";
 import pediatricImage from "../assets/pediatric.jpg";
+import overviewhero from "../assets/healthier.jpg";
 
 const Overview: React.FC = () => {
   return (
@@ -30,11 +31,13 @@ const Overview: React.FC = () => {
             </div>
           </div>
 
-          {/* Hero image placeholder */}
-          <div className="w-full h-96 bg-gray-300 rounded-lg mb-16 flex items-center justify-center">
-            <span className="text-gray-500 text-lg">
-              Hero Image Placeholder
-            </span>
+          {/* Hero image */}
+          <div className="w-full h-96 rounded-lg mb-16 overflow-hidden shadow-lg">
+            <img
+              src={overviewhero}
+              alt="Building a healthier future for every community"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>

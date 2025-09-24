@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import logoImage from "../../assets/logo.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -178,18 +179,16 @@ const Header = () => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <a href="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                <svg
-                  className="w-8 h-8 text-teal-600"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
+              <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg">
+                <img
+                  src={logoImage}
+                  alt="Ubuntu Afya Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-blue-600">
-                  Ubuntu <span className="text-yellow-400">Afya</span>
+                <h1 className="text-2xl font-bold text-blue-800">
+                  Ubuntu <span className="text-orange-500">Afya</span>
                 </h1>
               </div>
             </a>

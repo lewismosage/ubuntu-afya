@@ -8,6 +8,7 @@ import {
   Linkedin,
   ArrowRight,
 } from "lucide-react";
+import logoImage from "../../assets/logo.jpg";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -67,17 +68,15 @@ const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-teal-600"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
+              <div className="w-12 h-12 rounded-full overflow-hidden">
+                <img
+                  src={logoImage}
+                  alt="Ubuntu Afya Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-blue-600">
+                <h2 className="text-2xl font-bold text-white">
                   UBUNTU <span className="text-yellow-400">AFYA</span>
                 </h2>
               </div>
