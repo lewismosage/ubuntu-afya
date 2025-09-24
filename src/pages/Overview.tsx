@@ -1,7 +1,8 @@
 import React from "react";
-import overviewImage from "../overview.avif";
+import overviewImage from "../assets/overview.avif";
 import pediatricImage from "../assets/pediatric.jpg";
 import overviewhero from "../assets/healthier.jpg";
+import clinicImage from "../assets/clinic.avif";
 
 const Overview: React.FC = () => {
   return (
@@ -55,7 +56,7 @@ const Overview: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-16 text-center">
             <div>
               <p className="text-base text-gray-600 leading-relaxed">
-                Our work isn't just about building clinics—it's about building
+                Our work isn't just about building clinics it's about building
                 systems.
               </p>
             </div>
@@ -73,7 +74,7 @@ const Overview: React.FC = () => {
 
           {/* Bottom paragraph */}
           <p className="text-base text-gray-600 mb-16 leading-relaxed">
-            We bring projects to life—with local teams, essential services, and
+            We bring projects to life with local teams, essential services, and
             sustainable systems that meet real needs, every day.
           </p>
 
@@ -85,14 +86,18 @@ const Overview: React.FC = () => {
                 Our Mission
               </h3>
               <p className="text-teal-800 font-semibold mb-8 leading-relaxed">
-                To strengthen community-owned health systems and expand access
+                To strengthen community owned health systems and expand access
                 to affordable care in Kenya's underserved communities.
               </p>
 
               {/* Mission images grid */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="h-32 bg-gray-300 rounded flex items-center justify-center">
-                  <span className="text-gray-500 text-sm">Image 1</span>
+                <div className="h-32 rounded overflow-hidden">
+                  <img
+                    src={clinicImage}
+                    alt="Ubuntu Afya clinic providing healthcare services"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="h-32 bg-gray-300 rounded flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Image 2</span>

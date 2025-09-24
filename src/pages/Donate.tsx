@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
-import { Heart, Users, TrendingUp, ArrowRight, Calendar, Building, Gift,} from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Heart,
+  Users,
+  TrendingUp,
+  ArrowRight,
+  Calendar,
+  Building,
+  Gift,
+} from "lucide-react";
+import graceImage from "../assets/grace.jpg";
+import donationImage from "../assets/donation.jpg";
+import medicalDonationImage from "../assets/medical-donation.jpg";
+import cooperateDonationImage from "../assets/cooperate-donation.jpg";
 
 const DonatePage: React.FC = () => {
-  const [donationType, setDonationType] = useState<'onetime' | 'monthly'>('onetime');
+  const [donationType, setDonationType] = useState<"onetime" | "monthly">(
+    "onetime"
+  );
   const [selectedAmount, setSelectedAmount] = useState<number>(50);
-  const [customAmount, setCustomAmount] = useState<string>('');
+  const [customAmount, setCustomAmount] = useState<string>("");
 
   const predefinedAmounts = [50, 100, 250, 500];
 
   const handleAmountSelect = (amount: number) => {
     setSelectedAmount(amount);
-    setCustomAmount('');
+    setCustomAmount("");
   };
 
   const handleCustomAmountChange = (value: string) => {
@@ -29,49 +43,53 @@ const DonatePage: React.FC = () => {
               DONATE
             </span>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left side - Content */}
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-8">
-                Every Dollar Creates Hope
+                Every Contribution Creates Hope
               </h1>
-              
+
               <div className="space-y-6 text-lg">
                 <p>
-                  When you give to Ubuntu Afya, you're not just donating, you're delivering 
-                  life-changing care to people who would otherwise go without.
+                  When you give to Ubuntu Afya, you're not just donating, you're
+                  delivering life-changing care to people who would otherwise go
+                  without.
                 </p>
-                
+
                 <p>
-                  You're helping mothers deliver safely. Children access treatment. Families build 
-                  trust in a system that will be there tomorrow—and for generations to come.
+                  You're helping mothers deliver safely. Children access
+                  treatment. Families build trust in a system that will be there
+                  tomorrow—and for generations to come.
                 </p>
               </div>
             </div>
 
             {/* Right side - Donation Form */}
             <div className="bg-white text-gray-900 p-8 rounded-2xl shadow-2xl">
-              <h3 className="text-2xl font-bold mb-6 text-center">Choose Your Gift</h3>
-              
+              <h3 className="text-2xl font-bold mb-6 text-center">
+                Choose Your Gift
+              </h3>
+
               {/* Donation Type Toggle */}
               <div className="flex mb-6">
                 <button
-                  onClick={() => setDonationType('onetime')}
+                  onClick={() => setDonationType("onetime")}
                   className={`flex-1 py-3 px-4 font-semibold rounded-l-lg border-2 transition-colors ${
-                    donationType === 'onetime'
-                      ? 'bg-teal-500 text-white border-teal-500'
-                      : 'bg-white text-teal-500 border-gray-300 hover:bg-gray-50'
+                    donationType === "onetime"
+                      ? "bg-teal-500 text-white border-teal-500"
+                      : "bg-white text-teal-500 border-gray-300 hover:bg-gray-50"
                   }`}
                 >
                   One Time
                 </button>
                 <button
-                  onClick={() => setDonationType('monthly')}
+                  onClick={() => setDonationType("monthly")}
                   className={`flex-1 py-3 px-4 font-semibold rounded-r-lg border-2 border-l-0 transition-colors ${
-                    donationType === 'monthly'
-                      ? 'bg-teal-500 text-white border-teal-500'
-                      : 'bg-white text-teal-500 border-gray-300 hover:bg-gray-50'
+                    donationType === "monthly"
+                      ? "bg-teal-500 text-white border-teal-500"
+                      : "bg-white text-teal-500 border-gray-300 hover:bg-gray-50"
                   }`}
                 >
                   <Calendar className="w-4 h-4 inline mr-2" />
@@ -87,8 +105,8 @@ const DonatePage: React.FC = () => {
                     onClick={() => handleAmountSelect(amount)}
                     className={`py-3 px-4 font-semibold rounded-lg border-2 transition-colors ${
                       selectedAmount === amount
-                        ? 'bg-teal-500 text-white border-teal-500'
-                        : 'bg-white text-gray-700 border-gray-300 hover:border-teal-300'
+                        ? "bg-teal-500 text-white border-teal-500"
+                        : "bg-white text-gray-700 border-gray-300 hover:border-teal-300"
                     }`}
                   >
                     ${amount}
@@ -125,28 +143,32 @@ const DonatePage: React.FC = () => {
               <h2 className="text-4xl font-bold text-teal-800 mb-8">
                 Your Donation Makes a Difference
               </h2>
-              
+
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  We believe in solutions that last—and grow. With your support, we don't just treat symptoms. We 
-                  strengthen healthcare systems that empower communities for generations.
+                  We believe in solutions that last—and grow. With your support,
+                  we don't just treat symptoms. We strengthen healthcare systems
+                  that empower communities for generations.
                 </p>
-                
+
                 <p>
-                  Every project we launch is led locally, built for sustainability, and supported to evolve with the needs of 
-                  the people it serves.
+                  Every project we launch is led locally, built for
+                  sustainability, and supported to evolve with the needs of the
+                  people it serves.
                 </p>
-                
+
                 <p>
-                  Our model is designed to be sustainable—but that doesn't mean it stops needing support. Patient fees 
-                  cover daily operations. But your support is essential to help local providers, expand essential programs, 
-                  upgrade equipment, and build new facilities.
+                  Our model is designed to be sustainable—but that doesn't mean
+                  it stops needing support. Patient fees cover daily operations.
+                  But your support is essential to help local providers, expand
+                  essential programs, upgrade equipment, and build new
+                  facilities.
                 </p>
-                
+
                 <p className="font-semibold text-teal-800">
                   This is how we grow from access to excellence.
                 </p>
-                
+
                 <div className="space-y-2 text-gray-600">
                   <p>This isn't just infrastructure—it's transformation.</p>
                   <p>Not just construction, but connection.</p>
@@ -155,9 +177,13 @@ const DonatePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right side - Image placeholder */}
-            <div className="h-96 bg-gray-300 rounded-lg flex items-center justify-center">
-              <span className="text-gray-500 text-lg">Community Impact Image</span>
+            {/* Right side - Community Impact Image */}
+            <div className="h-96 rounded-lg overflow-hidden shadow-lg">
+              <img
+                src={donationImage}
+                alt="Community impact through donations"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -168,8 +194,19 @@ const DonatePage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Monthly Giving */}
-            <div className="bg-teal-500 p-8 rounded-2xl text-white">
-              <div className="flex items-start justify-between mb-6">
+            <div className="relative rounded-2xl text-white overflow-hidden">
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={medicalDonationImage}
+                  alt="Monthly giving program supporting medical care"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-teal-500/80"></div>
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 p-8 h-full flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-bold mb-4">
                     Join our Monthly Giving Program
@@ -178,31 +215,32 @@ const DonatePage: React.FC = () => {
                     Invest in Long-Term Impact
                   </p>
                   <p className="text-teal-100 leading-relaxed mb-6">
-                    By becoming a monthly giver, you're providing a steady stream of 
-                    support that helps us not just respond to health crises but implement 
-                    sustained change. Monthly donations help us plan for the future and continue providing 
-                    care long after the initial need is met.
+                    By becoming a monthly giver, you're providing a steady
+                    stream of support that helps us not just respond to health
+                    crises but implement sustained change. Monthly donations
+                    help us plan for the future and continue providing care long
+                    after the initial need is met.
                   </p>
-                  <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center">
-                    Monthly Giving
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </button>
                 </div>
-              </div>
-              
-              {/* Image placeholder */}
-              <div className="h-48 bg-teal-400 rounded-lg flex items-center justify-center mt-6">
-                <span className="text-teal-700 text-sm">Monthly Program Image</span>
+
+                <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center w-fit">
+                  Monthly Giving
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </button>
               </div>
             </div>
 
             {/* Corporate Partnerships */}
             <div>
-              {/* Image placeholder */}
-              <div className="h-48 bg-gray-300 rounded-lg flex items-center justify-center mb-6">
-                <span className="text-gray-500 text-sm">Corporate Partnership Image</span>
+              {/* Corporate Partnership Image */}
+              <div className="h-48 rounded-lg overflow-hidden mb-6">
+                <img
+                  src={cooperateDonationImage}
+                  alt="Corporate partnerships supporting healthcare initiatives"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              
+
               <div className="text-white">
                 <h3 className="text-2xl font-bold mb-4">
                   Explore Corporate Partnerships
@@ -211,10 +249,10 @@ const DonatePage: React.FC = () => {
                   Amplify Your Company's Impact
                 </p>
                 <p className="text-teal-100 leading-relaxed mb-6">
-                  Partnering with Ubuntu Afya creates an amazing opportunity to 
-                  make a global difference. From employee giving programs to corporate 
-                  sponsorships, we work with companies large and small to create 
-                  meaningful partnerships that deliver results.
+                  Partnering with Ubuntu Afya creates an amazing opportunity to
+                  make a global difference. From employee giving programs to
+                  corporate sponsorships, we work with companies large and small
+                  to create meaningful partnerships that deliver results.
                 </p>
                 <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center">
                   Partnership Info
@@ -234,8 +272,9 @@ const DonatePage: React.FC = () => {
               More Giving Opportunities
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We offer a range of programs and initiatives for donors of all kinds, from individuals to groups. 
-              Explore how you can make a difference with OneWorld Health through our giving programs.
+              We offer a range of programs and initiatives for donors of all
+              kinds, from individuals to groups. Explore how you can make a
+              difference with OneWorld Health through our giving programs.
             </p>
           </div>
 
@@ -262,12 +301,8 @@ const DonatePage: React.FC = () => {
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
                 <TrendingUp className="w-8 h-8 text-yellow-600" />
               </div>
-              <h3 className="text-xl font-bold text-teal-800 mb-3">
-                Beacon
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Partnering Faith and Health
-              </p>
+              <h3 className="text-xl font-bold text-teal-800 mb-3">Beacon</h3>
+              <p className="text-gray-600 mb-4">Partnering Faith and Health</p>
               <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
                 Learn More
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -282,9 +317,7 @@ const DonatePage: React.FC = () => {
               <h3 className="text-xl font-bold text-teal-800 mb-3">
                 Fundraise with Us
               </h3>
-              <p className="text-gray-600 mb-4">
-                Multiply Your Impact
-              </p>
+              <p className="text-gray-600 mb-4">Multiply Your Impact</p>
               <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
                 Learn More
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -301,9 +334,7 @@ const DonatePage: React.FC = () => {
               <h3 className="text-xl font-bold text-teal-800 mb-3">
                 Sponsor a Clinic
               </h3>
-              <p className="text-gray-600 mb-4">
-                Build Hope for Generations
-              </p>
+              <p className="text-gray-600 mb-4">Build Hope for Generations</p>
               <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
                 Learn More
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -318,9 +349,7 @@ const DonatePage: React.FC = () => {
               <h3 className="text-xl font-bold text-teal-800 mb-3">
                 Legacy Giving
               </h3>
-              <p className="text-gray-600 mb-4">
-                Leave a Lasting Impact
-              </p>
+              <p className="text-gray-600 mb-4">Leave a Lasting Impact</p>
               <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
                 Learn More
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -346,28 +375,35 @@ const DonatePage: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Story Image */}
-              <div className="h-64 bg-gray-300 flex items-center justify-center">
-                <span className="text-gray-500 text-lg">Patient Story Image</span>
+              <div className="h-64 overflow-hidden">
+                <img
+                  src={graceImage}
+                  alt="Grace's story - A mother's journey to health"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              
+
               {/* Story Content */}
               <div className="p-8">
                 <div className="flex items-center space-x-2 mb-4">
-                  <span className="text-sm text-teal-600 font-semibold">Stories of Hope</span>
+                  <span className="text-sm text-teal-600 font-semibold">
+                    Stories of Hope
+                  </span>
                   <span className="text-gray-400">|</span>
-                  <span className="text-sm text-gray-600">Kenya → Uganda</span>
+                  <span className="text-sm text-gray-600">Kenya → Migori</span>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Grace's Second Chance: A Mother's Story from Rural Uganda
+                  Grace's Second Chance: A Mother's Story from Rural Kenya
                 </h3>
-                
+
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  Grace seemed in critical illness and her town lacked the health care in Ubuntu Afya's 
-                  maternal care in Uganda. Her premature baby received the loving treatment 
-                  and today, both mother and child are thriving.
+                  Grace seemed in critical illness and her town lacked the
+                  health care in Ubuntu Afya's maternal care in Kenya. Her
+                  premature baby received the loving treatment and today, both
+                  mother and child are thriving.
                 </p>
-                
+
                 <button className="text-teal-600 font-semibold flex items-center hover:text-teal-700">
                   Read Story
                   <ArrowRight className="w-4 h-4 ml-2" />
