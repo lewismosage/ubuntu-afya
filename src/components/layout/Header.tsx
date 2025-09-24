@@ -1,9 +1,37 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const navigation = [
     {
@@ -13,18 +41,18 @@ const Header = () => {
         {
           name: "Overview",
           description: "Our mission, values, and vision for the future.",
-          link: "/overview"
+          link: "/overview",
         },
         {
           name: "Our People",
           description:
             "The team bringing life-saving global healthcare change.",
-          link: "/our-people"
+          link: "/our-people",
         },
         {
           name: "Impact Reports",
           description: "Explore the data behind our mission and milestones.",
-          link: "/impact-reports"
+          link: "/impact-reports",
         },
       ],
     },
@@ -36,19 +64,19 @@ const Header = () => {
           name: "Our Model",
           description:
             "Discover how our sustainable, locally led model delivers long-term healthcare solutions.",
-          link: "/our-model"
+          link: "/our-model",
         },
         {
           name: "Our Strategy",
           description:
             "Discover how our sustainable, locally led model delivers long-term healthcare solutions.",
-          link: "/our-strategy"
+          link: "/our-strategy",
         },
         {
           name: "Latest Updates",
           description:
             "Stay informed with our latest news, inspiring stories, research findings, and impact reports from the field.",
-          link: "/updates"
+          link: "/updates",
         },
       ],
     },
@@ -59,45 +87,83 @@ const Header = () => {
         {
           name: "Volunteer",
           description: "Join one of our trips and make a real impact.",
-          link: "/volunteer"
+          link: "/volunteer",
         },
         {
           name: "Donate",
           description:
             "Your gift brings life-saving care to communities in need.",
-          link: "/donate"
+          link: "/donate",
         },
         {
           name: "Partnerships",
           description:
             "See how your church, business, or group can make an impact.",
-          link: "/partnerships"
+          link: "/partnerships",
         },
         {
           name: "Events",
           description: "Join us for events that support global health.",
-          link: "/events"
+          link: "/events",
         },
       ],
     },
   ];
 
   const handleMouseEnter = (itemName: string) => {
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
     setActiveDropdown(itemName);
   };
 
   const handleMouseLeave = () => {
-    setActiveDropdown(null);
+    // Add a delay before closing the dropdown
+    hoverTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200); // 200ms delay
   };
 
-  const handleDropdownClick = () => {
-    setActiveDropdown(null);
+  const handleDropdownMouseEnter = () => {
+    // Clear timeout when mouse enters dropdown
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  };
+
+  const handleDropdownMouseLeave = () => {
+    // Close dropdown when mouse leaves dropdown area
+    hoverTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200);
+  };
+
+  const handleDropdownItemClick = () => {
+    // Close mobile menu but keep dropdown open for a moment
     setIsMenuOpen(false);
+
+    // Optionally close dropdown after a short delay
+    setTimeout(() => {
+      setActiveDropdown(null);
+    }, 300);
+
+    // If using standard anchor navigation, the page will navigate normally
+    // If using React Router, you would use navigate(itemLink) here instead
+  };
+
+  const handleDropdownToggle = (itemName: string) => {
+    setActiveDropdown(activeDropdown === itemName ? null : itemName);
   };
 
   return (
     <>
-      <header className="bg-teal-600 sticky top-0 z-50 relative">
+      <header
+        className="bg-teal-600 sticky top-0 z-50 relative"
+        ref={dropdownRef}
+      >
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div
@@ -139,9 +205,7 @@ const Header = () => {
                 >
                   <button
                     className={`flex items-center space-x-1 font-medium transition-all duration-200 px-4 py-2 rounded-lg text-white hover:text-yellow-400 ${
-                      activeDropdown === item.name
-                        ? "text-yellow-400"
-                        : ""
+                      activeDropdown === item.name ? "text-yellow-400" : ""
                     }`}
                   >
                     <span>{item.name}</span>
@@ -154,16 +218,22 @@ const Header = () => {
 
                   {/* Full Width Horizontal Dropdown Menu */}
                   {activeDropdown === item.name && (
-                    <div className="fixed left-0 right-0 top-20 bg-teal-700 shadow-xl border-t border-teal-600 z-50">
+                    <div
+                      className="fixed left-0 right-0 top-20 bg-teal-700 shadow-xl border-t border-teal-600 z-50"
+                      onMouseEnter={handleDropdownMouseEnter}
+                      onMouseLeave={handleDropdownMouseLeave}
+                    >
                       <div className="max-w-7xl mx-auto px-6 py-8">
                         <div className="grid grid-cols-5 gap-0">
                           {item.dropdownItems?.map((dropdownItem, index) => (
                             <a
                               key={dropdownItem.name}
                               href={dropdownItem.link}
-                              onClick={handleDropdownClick}
+                              onClick={handleDropdownItemClick}
                               className={`px-6 py-6 hover:bg-teal-600 transition-colors group border-r border-teal-600 last:border-r-0 ${
-                                index === 0 ? 'border-l-4 border-l-yellow-400' : ''
+                                index === 0
+                                  ? "border-l-4 border-l-yellow-400"
+                                  : ""
                               }`}
                             >
                               <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors mb-3">
@@ -175,11 +245,16 @@ const Header = () => {
                             </a>
                           ))}
                           {/* Add empty columns to fill the 5-column grid if needed */}
-                          {item.dropdownItems && item.dropdownItems.length < 5 && 
-                            Array.from({ length: 5 - item.dropdownItems.length }).map((_, index) => (
-                              <div key={`empty-${index}`} className="px-6 py-6 border-r border-teal-600 last:border-r-0"></div>
-                            ))
-                          }
+                          {item.dropdownItems &&
+                            item.dropdownItems.length < 5 &&
+                            Array.from({
+                              length: 5 - item.dropdownItems.length,
+                            }).map((_, index) => (
+                              <div
+                                key={`empty-${index}`}
+                                className="px-6 py-6 border-r border-teal-600 last:border-r-0"
+                              ></div>
+                            ))}
                         </div>
                       </div>
                     </div>
@@ -190,8 +265,8 @@ const Header = () => {
 
             {/* Donate Button - Desktop */}
             <div className="hidden lg:flex items-center">
-              <a 
-                href="/donate" 
+              <a
+                href="/donate"
                 className="bg-white border-2 border-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200"
               >
                 Donate
@@ -219,11 +294,7 @@ const Header = () => {
               {navigation.map((item) => (
                 <div key={item.name}>
                   <button
-                    onClick={() =>
-                      setActiveDropdown(
-                        activeDropdown === item.name ? null : item.name
-                      )
-                    }
+                    onClick={() => handleDropdownToggle(item.name)}
                     className="flex items-center justify-between w-full px-4 py-3 text-left font-medium text-white hover:text-yellow-400 hover:bg-teal-600 rounded-lg transition-colors"
                   >
                     <span>{item.name}</span>
@@ -234,13 +305,13 @@ const Header = () => {
                     />
                   </button>
 
-                  {activeDropdown === item.name && (
+                  {activeDropdown === item.name && item.dropdownItems && (
                     <div className="ml-4 mt-2 space-y-1">
-                      {item.dropdownItems?.map((dropdownItem) => (
+                      {item.dropdownItems.map((dropdownItem) => (
                         <a
                           key={dropdownItem.name}
                           href={dropdownItem.link}
-                          onClick={handleDropdownClick}
+                          onClick={handleDropdownItemClick}
                           className="block px-4 py-3 rounded-lg hover:bg-teal-600 transition-colors"
                         >
                           <div className="text-white font-medium mb-1">
@@ -255,9 +326,9 @@ const Header = () => {
                   )}
                 </div>
               ))}
-              <a 
-                href="/donate" 
-                onClick={handleDropdownClick}
+              <a
+                href="/donate"
+                onClick={() => setIsMenuOpen(false)}
                 className="block w-full bg-white text-teal-700 px-4 py-3 rounded-lg font-semibold text-center mt-4 hover:bg-gray-100 transition-colors"
               >
                 Donate
