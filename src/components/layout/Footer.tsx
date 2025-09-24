@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-2xl font-bold text-blue-600">
                   UBUNTU <span className="text-yellow-400">AFYA</span>
                 </h2>
               </div>

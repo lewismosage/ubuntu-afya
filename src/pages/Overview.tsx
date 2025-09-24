@@ -1,5 +1,6 @@
 import React from "react";
 import overviewImage from "../overview.avif";
+import pediatricImage from "../assets/pediatric.jpg";
 
 const Overview: React.FC = () => {
   return (
@@ -230,11 +231,13 @@ const Overview: React.FC = () => {
       {/* Fifth Section - Call to Action */}
       <section className="py-20 px-6 bg-teal-600 text-white relative overflow-hidden">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Image placeholder */}
-          <div className="h-96 bg-gray-400 rounded-lg flex items-center justify-center">
-            <span className="text-gray-600 text-lg">
-              Portrait Image Placeholder
-            </span>
+          {/* Left side - Pediatric care image */}
+          <div className="h-96 rounded-lg overflow-hidden shadow-lg">
+            <img
+              src={pediatricImage}
+              alt="Pediatric care moment showing compassionate healthcare"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           {/* Right side - Content */}

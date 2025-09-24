@@ -52,7 +52,7 @@ const Header = () => {
         {
           name: "Impact Reports",
           description: "Explore the data behind our mission and milestones.",
-          link: "/impact-reports",
+          link: "/impact",
         },
       ],
     },
@@ -188,7 +188,7 @@ const Header = () => {
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">
+                <h1 className="text-2xl font-bold text-blue-600">
                   Ubuntu <span className="text-yellow-400">Afya</span>
                 </h1>
               </div>

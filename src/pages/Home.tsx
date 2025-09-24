@@ -49,7 +49,7 @@ const Homepage: React.FC = () => {
               </p>
             </div>
             <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors flex items-center space-x-2 mt-6 lg:mt-0">
-              <span>View Journal</span>
+              <span>View News Updates</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -61,7 +61,7 @@ const Homepage: React.FC = () => {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                   <img 
-                    src="https://images.pexels.com/photos/20333030/pexels-photo-20333030.jpeg" 
+                    src="https://images.stockcake.com/public/a/2/d/a2d60a74-476b-4d38-9589-16ac4c34a0eb_large/mobile-clinic-service-stockcake.jpg" 
                     alt="Lewis Mosage joining Ubuntu Afya"
                     className="w-full h-full object-cover"
                   />
@@ -169,13 +169,13 @@ const Homepage: React.FC = () => {
                 title: "Give Monthly", 
                 subtitle: "Become a monthly supporter for sustained impact",
                 icon: Heart,
-                image: "https://images.pexels.com/photos/20333030/pexels-photo-20333030.jpeg"
+                image: "https://images.pexels.com/photos/29944635/pexels-photo-29944635.jpeg"
               },
               { 
                 title: "Donate", 
                 subtitle: "Make a one-time or recurring gift to expand access to care",
                 icon: Heart,
-                image: "https://images.pexels.com/photos/20333030/pexels-photo-20333030.jpeg"
+                image: "https://images.stockcake.com/public/c/6/e/c6e4f926-e2bd-4959-aca8-f8c6a42cd5aa_large/rural-medical-consultation-stockcake.jpg"
               },
               { 
                 title: "Volunteer", 
@@ -240,59 +240,59 @@ const Homepage: React.FC = () => {
       </section>
 
       {/* Model Section */}
-<section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-  <div className="container mx-auto px-6">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold text-gray-900 mb-4">
-        Our Impact Areas
-      </h2>
-      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-        We work across three key areas to deliver sustainable, community-driven healthcare solutions that transform lives.
-      </p>
-    </div>
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Our Impact Areas
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We work across three key areas to deliver sustainable, community-driven healthcare solutions that transform lives.
+            </p>
+          </div>
 
-    <div className="grid md:grid-cols-3 gap-8">
-      {/* Primary Healthcare */}
-      <div className="bg-white p-8 rounded-2xl shadow-lg border border-green-100 hover:transform hover:scale-105 transition-all duration-300 group">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-green-200 transition-colors duration-300">
-          <Users className="w-8 h-8 text-green-600" />
-        </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-4">
-          Primary Healthcare
-        </h3>
-        <p className="text-gray-600 leading-relaxed">
-          Through our Ubuntu-Afya kiosks, we bring essential health services closer to families in underserved communities, co-owned with local groups to ensure accountability and sustainability.
-        </p>
-      </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Primary Healthcare */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-green-100 hover:transform hover:scale-105 transition-all duration-300 group">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-green-200 transition-colors duration-300">
+                <Users className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Primary Healthcare
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Through our Ubuntu-Afya kiosks, we bring essential health services closer to families in underserved communities, co-owned with local groups to ensure accountability and sustainability.
+              </p>
+            </div>
 
-      {/* Health Technology */}
-      <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 hover:transform hover:scale-105 transition-all duration-300 group">
-        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-          <TrendingUp className="w-8 h-8 text-blue-600" />
-        </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-4">
-          Health Technology
-        </h3>
-        <p className="text-gray-600 leading-relaxed">
-          Our STONE-HMIS® connects clinics, communities, and county governments with real-time data to improve care, strengthen referrals, and guide decisions across health systems.
-        </p>
-      </div>
+            {/* Health Technology */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100 hover:transform hover:scale-105 transition-all duration-300 group">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors duration-300">
+                <TrendingUp className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Health Technology
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Our STONE-HMIS® connects clinics, communities, and county governments with real-time data to improve care, strengthen referrals, and guide decisions across health systems.
+              </p>
+            </div>
 
-      {/* Research & Evidence */}
-      <div className="bg-white p-8 rounded-2xl shadow-lg border border-purple-100 hover:transform hover:scale-105 transition-all duration-300 group">
-        <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-purple-200 transition-colors duration-300">
-          <Heart className="w-8 h-8 text-purple-600" />
+            {/* Research & Evidence */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-purple-100 hover:transform hover:scale-105 transition-all duration-300 group">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-purple-200 transition-colors duration-300">
+                <Heart className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Research & Evidence
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                As a collaborating center with the Joanna Briggs Institute, we equip frontline workers with tools and training to translate evidence into practice, shaping policy and improving outcomes.
+              </p>
+            </div>
+          </div>
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-4">
-          Research & Evidence
-        </h3>
-        <p className="text-gray-600 leading-relaxed">
-          As a collaborating center with the Joanna Briggs Institute, we equip frontline workers with tools and training to translate evidence into practice, shaping policy and improving outcomes.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
     </div>
   );
 };
