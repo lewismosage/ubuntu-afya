@@ -260,26 +260,46 @@ const Impact: React.FC = () => {
                   "The Ubuntu-Afya kiosk saved my daughter's life. Now I'm part of the community health team.",
                 author: "Sarah M., Community Health Worker",
                 location: "Kisumu County",
+                avatar: "sarah-avatar.jpg", // Add this line
               },
               {
                 quote:
                   "STONE-HMIS® helps us track patient care seamlessly. Our efficiency has improved dramatically.",
                 author: "Dr. James K., Clinic Director",
                 location: "Migori County",
+                avatar: "james-avatar.jpg", // Add this line
               },
               {
                 quote:
                   "Evidence-based training transformed how we deliver maternal care in our community.",
                 author: "Nurse Amina W., Frontline Worker",
                 location: "Homa Bay County",
+                avatar: "amina-avatar.jpg", // Add this line
               },
             ].map((story, index) => (
               <div key={index} className="bg-teal-700 p-8 rounded-lg">
+                {/* Avatar Section - Similar to your screenshot */}
+                <div className="flex items-center mb-6">
+                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                    {/* Circular avatar placeholder - you can replace with actual images */}
+                    <div className="w-14 h-14 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      {story.author.split(' ').map(n => n[0]).join('')}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-lg">{story.author}</div>
+                    <div className="text-teal-200 text-sm">{story.location}</div>
+                  </div>
+                </div>
+
                 <div className="text-6xl opacity-20 mb-4">"</div>
-                <p className="text-lg mb-6 italic">"{story.quote}"</p>
-                <div>
-                  <div className="font-semibold">{story.author}</div>
-                  <div className="text-teal-200 text-sm">{story.location}</div>
+                <p className="text-lg mb-6 italic leading-relaxed">"{story.quote}"</p>
+                
+                {/* Optional: Add a small separator or additional info */}
+                <div className="border-t border-teal-600 pt-4">
+                  <p className="text-teal-200 text-sm italic">
+                    The benefits at Ubuntu Afya go beyond healthcare to creating supportive work environments while making a real difference in people's lives.
+                  </p>
                 </div>
               </div>
             ))}
