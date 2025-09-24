@@ -183,4 +183,4 @@ const Model: React.FC = () => {
   );
 };
 
-export default Model;
+export default Model; 
