@@ -8,21 +8,21 @@ import {
   Linkedin,
   ArrowRight,
 } from "lucide-react";
-import logoImage from "../../assets/logo.jpg";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
-  const whoWeAre = ["Our Story", "Our People", "Journal", "Impact Reports"];
+  const whoWeAre = ["Overview", "Our People", "Impact Reports"];
 
-  const ourWork = [
-    "Our Model",
-    "Global Impact",
-    "Research & Evidence",
-    "Health Technology",
+  const ourWork = ["Our Model", "Our Strategy", "Latest Updates"];
+
+  const getInvolved = [
+    "Volunteer",
+    "Donate",
+    "Partnerships",
+    "Events",
+    "Contact Us",
   ];
-
-  const getInvolved = ["Volunteer", "Donate", "Partnerships", "Events"];
 
   const resources = [
     "Privacy Policy",
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
     <footer className="bg-teal-800 text-white">
       {/* Newsletter Section */}
       <div className="border-b border-teal-700">
-        <div className="container mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="max-w-4xl">
             <h3 className="text-2xl font-bold mb-4">
               Stay up to date with Ubuntu Afya
@@ -63,21 +63,14 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="container mx-auto px-6 py-16">
+      <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 rounded-full overflow-hidden">
-                <img
-                  src={logoImage}
-                  alt="Ubuntu Afya Logo"
-                  className="w-full h-full object-cover"
-                />
-              </div>
               <div>
-                <h2 className="text-2xl font-bold text-white">
-                  UBUNTU <span className="text-yellow-400">AFYA</span>
+                <h2 className="text-2xl font-bold text-blue-800">
+                  UBUNTU <span className="text-orange-500">AFYA</span>
                 </h2>
               </div>
             </Link>
@@ -101,16 +94,23 @@ const Footer: React.FC = () => {
               WHO WE ARE
             </h3>
             <ul className="space-y-3">
-              {whoWeAre.map((item) => (
-                <li key={item}>
-                  <Link
-                    to="#"
-                    className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {whoWeAre.map((item) => {
+                const linkMap: { [key: string]: string } = {
+                  Overview: "/overview",
+                  "Our People": "/our-people",
+                  "Impact Reports": "/impact",
+                };
+                return (
+                  <li key={item}>
+                    <Link
+                      to={linkMap[item] || "#"}
+                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -120,16 +120,23 @@ const Footer: React.FC = () => {
               OUR WORK
             </h3>
             <ul className="space-y-3">
-              {ourWork.map((item) => (
-                <li key={item}>
-                  <Link
-                    to="#"
-                    className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {ourWork.map((item) => {
+                const linkMap: { [key: string]: string } = {
+                  "Our Model": "/our-model",
+                  "Our Strategy": "/our-strategy",
+                  "Latest Updates": "/updates",
+                };
+                return (
+                  <li key={item}>
+                    <Link
+                      to={linkMap[item] || "#"}
+                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -139,16 +146,25 @@ const Footer: React.FC = () => {
               GET INVOLVED
             </h3>
             <ul className="space-y-3">
-              {getInvolved.map((item) => (
-                <li key={item}>
-                  <Link
-                    to="#"
-                    className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {getInvolved.map((item) => {
+                const linkMap: { [key: string]: string } = {
+                  Volunteer: "/volunteer",
+                  Donate: "/donate",
+                  Partnerships: "/partnerships",
+                  Events: "/events",
+                  "Contact Us": "/contact",
+                };
+                return (
+                  <li key={item}>
+                    <Link
+                      to={linkMap[item] || "#"}
+                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -158,16 +174,24 @@ const Footer: React.FC = () => {
               RESOURCES
             </h3>
             <ul className="space-y-3">
-              {resources.map((item) => (
-                <li key={item}>
-                  <Link
-                    to="#"
-                    className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {resources.map((item) => {
+                const linkMap: { [key: string]: string } = {
+                  "Privacy Policy": "/privacy",
+                  "Financial Reports": "/financial-reports",
+                  "Annual Report": "/annual-report",
+                  FAQ: "/faq",
+                };
+                return (
+                  <li key={item}>
+                    <Link
+                      to={linkMap[item] || "#"}
+                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Contact Info */}
@@ -188,7 +212,7 @@ const Footer: React.FC = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-teal-700">
-        <div className="container mx-auto px-6 py-6">
+        <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-teal-200 text-sm">
               © {currentYear} OneWorld Health. All Rights Reserved.
@@ -211,12 +235,6 @@ const Footer: React.FC = () => {
                 className="hover:text-yellow-400 transition-colors"
               >
                 Terms & Conditions
-              </Link>
-              <Link
-                to="/site-credit"
-                className="hover:text-yellow-400 transition-colors"
-              >
-                Site Credit
               </Link>
             </div>
           </div>

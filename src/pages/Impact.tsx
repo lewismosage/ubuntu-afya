@@ -260,21 +260,21 @@ const Impact: React.FC = () => {
                   "The Ubuntu-Afya kiosk saved my daughter's life. Now I'm part of the community health team.",
                 author: "Sarah M., Community Health Worker",
                 location: "Kisumu County",
-                avatar: "sarah-avatar.jpg", // Add this line
+                avatar: "sarah-avatar.jpg", 
               },
               {
                 quote:
                   "STONE-HMIS® helps us track patient care seamlessly. Our efficiency has improved dramatically.",
                 author: "Dr. James K., Clinic Director",
                 location: "Migori County",
-                avatar: "james-avatar.jpg", // Add this line
+                avatar: "james-avatar.jpg", 
               },
               {
                 quote:
                   "Evidence-based training transformed how we deliver maternal care in our community.",
                 author: "Nurse Amina W., Frontline Worker",
                 location: "Homa Bay County",
-                avatar: "amina-avatar.jpg", // Add this line
+                avatar: "amina-avatar.jpg", 
               },
             ].map((story, index) => (
               <div key={index} className="bg-teal-700 p-8 rounded-lg">

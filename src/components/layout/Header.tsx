@@ -107,6 +107,11 @@ const Header = () => {
           description: "Join us for events that support global health.",
           link: "/events",
         },
+        {
+          name: "Contact Us",
+          description: "Get in touch with us for more information.",
+          link: "/contact",
+        },
       ],
     },
   ];

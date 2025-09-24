@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
-import OurStory from "./pages/OurStory";
 import Impact from "./pages/Impact";
 import Overview from "./pages/Overview";
 import OurPeople from "./pages/OurPeople";
@@ -22,7 +21,6 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/our-story" element={<OurStory />} />
             <Route path="/volunteer" element={<Volunteer />} />
             <Route path="/impact" element={<Impact />} />
             <Route path="/overview" element={<Overview />} />
