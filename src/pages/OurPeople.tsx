@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import healthTeamImage from "../assets/healthcare-team.jpg";
-import { X, ExternalLink } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
 
 // Import profile images
 import charityImage from "../assets/charity.jpg";
@@ -13,13 +12,20 @@ import rodgersImage from "../assets/Rodgers-Omondi.png";
 import roseImage from "../assets/Rose-Mitevan.png";
 import samImage from "../assets/sam-gwer.jpg";
 import valImage from "../assets/val.jpg";
+import healthTeamImage from "../assets/healthcare-team.jpg";
 
+interface TeamMember {
+  name: string;
+  title: string;
+  description: string;
+  image: string;
+}
 
 const OurPeople: React.FC = () => {
   const [activeSection, setActiveSection] = useState("board-of-directors");
-  const [selectedMember, setSelectedMember] = useState<any>(null);
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
-  const OurTeam = [
+  const OurTeam: TeamMember[] = [
     {
       name: "Elizabeth Ombech",
       title: "DIRECTOR, PROGRAMS AND OPERATIONS",
@@ -78,13 +84,13 @@ const OurPeople: React.FC = () => {
     },
   ];
 
-  const boardOfDirectors = [
+  const boardOfDirectors: TeamMember[] = [
     {
       name: "Dr. Lee Ngugi Kigera",
       title: "BOARD CHAIRPERSON",
       description:
         "Lee is a champion for healthcare impact and sustainability, helping shape strategic partnerships and board-led approaches.",
-      image: drMosesImage, // Using available image as placeholder
+      image: drMosesImage,
     },
     {
       name: "Dr. Samson Gwer",
@@ -98,21 +104,21 @@ const OurPeople: React.FC = () => {
       title: "TREASURER",
       description:
         "Geoffrey is a seasoned medical professional with extensive experience in paediatrics and child health. He has over 20 years of experience in clinical practice, research, and leadership in the field of paediatrics. Geoffrey has worked in various hospitals and medical institutions, including the Kenyatta National Hospital, the Nairobi Women's Hospital, and the University of Nairobi.\n\nHe is a member of the Royal College of Paediatrics and Child Health (UK) and has a PhD in paediatrics from the University of Nairobi. Geoffrey is also a recipient of several awards for his work in paediatrics and child health.",
-      image: drMosesImage, // Using available image as placeholder
+      image: drMosesImage,
     },
     {
       name: "Patricia Griffin",
       title: "BOARD MEMBER, MEDICAL COMMITTEE",
       description:
         "Patricia is a seasoned medical professional with extensive experience in paediatrics and child health. She has over 20 years of experience in clinical practice, research, and leadership in the field of paediatrics. Patricia has worked in various hospitals and medical institutions, including the Kenyatta National Hospital, the Nairobi Women's Hospital, and the University of Nairobi.\n\nShe is a member of the Royal College of Paediatrics and Child Health (UK) and has a PhD in paediatrics from the University of Nairobi. Patricia is also a recipient of several awards for her work in paediatrics and child health.",
-      image: drMosesImage, // Using available image as placeholder
+      image: drMosesImage,
     },
     {
       name: "Silvana Wanjiru",
       title: "BOARD MEMBER, MEDICAL COMMITTEE",
       description:
         "Silvana is a seasoned medical professional with extensive experience in paediatrics and child health. She has over 20 years of experience in clinical practice, research, and leadership in the field of paediatrics. Silvana has worked in various hospitals and medical institutions, including the Kenyatta National Hospital, the Nairobi Women's Hospital, and the University of Nairobi.\n\nShe is a member of the Royal College of Paediatrics and Child Health (UK) and has a PhD in paediatrics from the University of Nairobi. Silvana is also a recipient of several awards for her work in paediatrics and child health.",
-      image: drMosesImage, // Using available image as placeholder
+      image: drMosesImage,
     },
     {
       name: "Dr. Moses Ndiritu",
@@ -126,17 +132,13 @@ const OurPeople: React.FC = () => {
       title: "BOARD MEMBER, MEDICAL COMMITTEE",
       description:
         "Lauren is a seasoned medical professional with extensive experience in paediatrics and child health. She has over 20 years of experience in clinical practice, research, and leadership in the field of paediatrics. Lauren has worked in various hospitals and medical institutions, including the Kenyatta National Hospital, the Nairobi Women's Hospital, and the University of Nairobi.\n\nShe is a member of the Royal College of Paediatrics and Child Health (UK) and has a PhD in paediatrics from the University of Nairobi. Lauren is also a recipient of several awards for her work in paediatrics and child health.",
-      image: drMosesImage, // Using available image as placeholder
+      image: drMosesImage,
     },
   ];
 
-  // Handle scroll-based navigation
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "board-of-directors",
-        "our-team",
-      ];
+      const sections = ["board-of-directors", "our-team"];
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
       for (const sectionId of sections) {
@@ -165,38 +167,28 @@ const OurPeople: React.FC = () => {
     }
   };
 
-  const handleMemberClick = (member: any) => {
-    setSelectedMember(member);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedMember(null);
-  };
-
-  const TeamMemberCard = ({ member }: { member: any }) => (
-    <div className="bg-white rounded-lg shadow-sm overflow-hidden relative group">
-      <div className="h-90 relative overflow-hidden flex items-center justify-center p-8">
-        <div className="w-32 h-32 rounded-full overflow-hidden">
+  const ProfileCircle = ({ member }: { member: TeamMember }) => (
+    <div 
+      className="flex flex-col items-center cursor-pointer group"
+      onClick={() => setSelectedMember(member)}
+    >
+      <div className="relative mb-4">
+        <div className="w-40 h-40 rounded-full overflow-hidden ring-4 ring-white shadow-lg transition-all duration-300 group-hover:ring-ubuntu-orange-400 group-hover:scale-105">
           <img
             src={member.image}
             alt={member.name}
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
             style={{ objectPosition: 'center 30%' }}
           />
         </div>
-        <button
-          onClick={() => handleMemberClick(member)}
-          className="absolute top-4 right-4 bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white p-2 rounded-full transition-colors duration-200"
-        >
-          <ExternalLink className="w-4 h-4" />
-        </button>
+        <div className="absolute inset-0 rounded-full bg-ubuntu-orange-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
       </div>
-      <div className="p-6">
-        <h4 className="text-xl font-bold text-ubuntu-blue-800 mb-2">{member.name}</h4>
-        <p className="text-sm font-semibold text-ubuntu-orange-600 uppercase tracking-wide">
-          {member.title}
-        </p>
-      </div>
+      <h4 className="text-lg font-bold text-ubuntu-blue-800 text-center mb-1 group-hover:text-ubuntu-orange-600 transition-colors">
+        {member.name}
+      </h4>
+      <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide text-center px-4">
+        {member.title}
+      </p>
     </div>
   );
 
@@ -205,27 +197,22 @@ const OurPeople: React.FC = () => {
 
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        {/* Overlay */}
         <div 
           className="absolute inset-0 bg-black bg-opacity-50"
-          onClick={handleCloseModal}
+          onClick={() => setSelectedMember(null)}
         />
         
-        {/* Modal */}
         <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-          {/* Close Button */}
           <button
-            onClick={handleCloseModal}
+            onClick={() => setSelectedMember(null)}
             className="absolute top-4 right-4 z-10 bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white p-2 rounded-lg transition-colors duration-200"
           >
             <X className="w-5 h-5" />
           </button>
           
-          {/* Modal Content */}
           <div className="flex flex-col lg:flex-row">
-            {/* Left Side - Image */}
             <div className="lg:w-2/5 flex items-center justify-center p-8 bg-gray-50">
-              <div className="w-full h-80 rounded-lg overflow-hidden">
+              <div className="w-64 h-64 rounded-full overflow-hidden ring-8 ring-white shadow-xl">
                 <img
                   src={selectedMember.image}
                   alt={selectedMember.name}
@@ -235,15 +222,14 @@ const OurPeople: React.FC = () => {
               </div>
             </div>
             
-            {/* Right Side - Content */}
-            <div className="lg:w-3/5 p-8 flex flex-col justify-center">
+            <div className="lg:w-3/5 p-8 flex flex-col justify-center overflow-y-auto max-h-[90vh]">
               <h2 className="text-3xl font-bold text-ubuntu-blue-800 mb-4">
                 {selectedMember.name}
               </h2>
-              <h3 className="text-lg font-semibold text-gray-700 mb-6">
+              <h3 className="text-lg font-semibold text-ubuntu-orange-600 mb-6">
                 {selectedMember.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed text-base">
+              <p className="text-gray-600 leading-relaxed text-base whitespace-pre-line">
                 {selectedMember.description}
               </p>
             </div>
@@ -258,14 +244,12 @@ const OurPeople: React.FC = () => {
       {/* Hero Section */}
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          {/* Our People label */}
           <div className="mb-12">
             <span className="bg-ubuntu-orange-500 text-white font-bold px-4 py-2 text-sm uppercase tracking-wide">
               OUR PEOPLE
             </span>
           </div>
 
-          {/* Split layout - Title left, description right */}
           <div className="grid lg:grid-cols-2 gap-16 mb-16">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold text-ubuntu-blue-800 leading-tight">
@@ -284,7 +268,6 @@ const OurPeople: React.FC = () => {
             </div>
           </div>
 
-          {/* Hero image */}
           <div className="w-full h-96 rounded-lg mb-16 overflow-hidden shadow-lg">
             <img
               src={healthTeamImage}
@@ -328,9 +311,9 @@ const OurPeople: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
             {boardOfDirectors.map((member, index) => (
-              <TeamMemberCard key={index} member={member} />
+              <ProfileCircle key={index} member={member} />
             ))}
           </div>
         </div>
@@ -343,9 +326,9 @@ const OurPeople: React.FC = () => {
             <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">Our Team</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
             {OurTeam.map((member, index) => (
-              <TeamMemberCard key={index} member={member} />
+              <ProfileCircle key={index} member={member} />
             ))}
           </div>
         </div>
