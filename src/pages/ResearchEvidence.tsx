@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, BookOpen, GraduationCap, FileText, Award, Users, Target } from "lucide-react";
+import { ArrowRight, BookOpen, GraduationCap, FileText, Award, Users, Target, TrendingUp, Microscope } from "lucide-react";
 import medicalResearchImage from "../assets/medical-research.jpg";
 import vision2Image from "../assets/vission-2.jpg";
 import ScrollToTop from "../components/common/ScrollToTop";
@@ -16,7 +16,7 @@ const ResearchEvidence: React.FC = () => {
       icon: Users,
       title: "Health Worker Training",
       description: "Evidence-based training programs and capacity building initiatives for frontline healthcare workers.",
-      stats: ["500+", "Workers Trained", "15", "Training Programs"]
+      stats: ["225+", "Workers Trained", "15+", "Training Programs"]
     },
     {
       icon: FileText,
@@ -56,12 +56,46 @@ const ResearchEvidence: React.FC = () => {
     }
   ];
 
+  const impactAreas = [
+    {
+      number: "1",
+      title: "Evidence-Based Practice",
+      description: "We engage leading clinicians and medical researchers to grow local research and support evidence-based medicine.",
+      icon: Microscope
+    },
+    {
+      number: "2",
+      title: "Research Community Building",
+      description: "Contributing to a larger medical research community by carrying out medical research initiatives relevant to the Ubuntu Afya Kiosks network.",
+      icon: Users
+    },
+    {
+      number: "3",
+      title: "Healthcare Quality Improvement",
+      description: "Bringing evidence to the forefront of healthcare provision in Kenya, providing healthcare professionals with the information and tools they need to provide high quality care.",
+      icon: TrendingUp
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <ScrollToTop />
+      
       {/* Hero Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-ubuntu-blue-900 to-ubuntu-blue-800 text-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-20 px-6 text-white overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${medicalResearchImage})`
+          }}
+        />
+        
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-ubuntu-blue-900/80 to-ubuntu-blue-1000/80"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="mb-6">
             <span className="bg-ubuntu-orange-500 text-white font-bold px-4 py-2 text-sm uppercase tracking-wide">
               RESEARCH & EVIDENCE
@@ -84,26 +118,47 @@ const ResearchEvidence: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="bg-ubuntu-blue-50 p-8 rounded-lg">
-              <div className="text-4xl font-bold text-ubuntu-blue-600 mb-2">500+</div>
-              <div className="text-lg font-semibold text-gray-800">Workers Trained</div>
-              <div className="text-gray-600">In evidence-based practices</div>
-            </div>
-            <div className="bg-ubuntu-orange-50 p-8 rounded-lg">
-              <div className="text-4xl font-bold text-ubuntu-orange-600 mb-2">15</div>
-              <div className="text-lg font-semibold text-gray-800">Research Studies</div>
+              <div className="text-4xl font-bold text-ubuntu-blue-600 mb-2">20+</div>
+              <div className="text-lg font-semibold text-gray-800">Publications</div>
               <div className="text-gray-600">Published in peer-reviewed journals</div>
             </div>
+            <div className="bg-ubuntu-orange-50 p-8 rounded-lg">
+              <div className="text-4xl font-bold text-ubuntu-orange-600 mb-2">225+</div>
+              <div className="text-lg font-semibold text-gray-800">Health Workers Trained</div>
+              <div className="text-gray-600">In evidence-based practices</div>
+            </div>
             <div className="bg-ubuntu-blue-50 p-8 rounded-lg">
-              <div className="text-4xl font-bold text-ubuntu-blue-600 mb-2">10+</div>
-              <div className="text-lg font-semibold text-gray-800">Policy Changes</div>
-              <div className="text-gray-600">Influenced by our research</div>
+              <div className="text-4xl font-bold text-ubuntu-blue-600 mb-2">15+</div>
+              <div className="text-lg font-semibold text-gray-800">Training Programs</div>
+              <div className="text-gray-600">Conducted across Kenya</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Research Areas Section */}
+      {/* Overview Section */}
       <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
+              Overview
+            </h2>
+          </div>
+          
+          <div className="bg-white p-10 rounded-lg shadow-lg">
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Too often health research is removed from the practice of providing care and health 
+              workers who can use their practical knowledge to inform health research projects and 
+              benefit from deploying research findings. We bridge this gap by integrating research 
+              directly into healthcare delivery, ensuring that evidence informs practice and practice 
+              informs research.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Areas Section */}
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
@@ -119,7 +174,7 @@ const ResearchEvidence: React.FC = () => {
             {researchAreas.map((area, index) => {
               const IconComponent = area.icon;
               return (
-                <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
+                <div key={index} className="bg-white border border-gray-200 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                   <div className="flex items-center mb-6">
                     <div className="p-3 bg-ubuntu-blue-100 rounded-lg mr-4">
                       <IconComponent className="w-8 h-8 text-ubuntu-blue-600" />
@@ -144,41 +199,47 @@ const ResearchEvidence: React.FC = () => {
         </div>
       </section>
 
-      {/* JBI Collaboration Section */}
-      <section className="py-20 px-6 bg-white">
+      {/* Our Approach Section */}
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Left Side - Our Approach */}
             <div>
-              <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-6">
-                Joanna Briggs Institute Collaboration
+              <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-8">
+                Our Approach
               </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                As an official collaborating center with the Joanna Briggs Institute, 
-                we provide world-class training in evidence-based healthcare practices 
-                and systematic review methodologies.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                {jbiCollaboration.map((item, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4"></div>
-                    <span className="text-gray-700">{item}</span>
-                  </div>
-                ))}
+              <div className="space-y-6 text-gray-700 leading-relaxed">
+                <p>
+                  We engage leading clinicians and medical researchers to grow local research, 
+                  support evidence-based medicine, and conduct rigorous monitoring and evaluation 
+                  of health programs.
+                </p>
+                <p>
+                  By contributing to a larger medical research community and carrying out medical 
+                  research initiatives relevant to the Ubuntu Afya Kiosks network, ARA can bring 
+                  evidence to the forefront of healthcare provision in Kenya.
+                </p>
+                <p>
+                  Our approach ensures that healthcare professionals have access to the information 
+                  and tools they need to provide high quality care to people in underserved communities. 
+                  We believe that research should not exist in isolation but should directly inform 
+                  and improve clinical practice.
+                </p>
+                <p>
+                  Through our partnership with the Joanna Briggs Institute and our commitment to 
+                  capacity building, we're creating a sustainable ecosystem where research, training, 
+                  and practice work together to transform healthcare delivery.
+                </p>
               </div>
-
-              <button className="bg-ubuntu-blue-600 hover:bg-ubuntu-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center">
-                <span>Learn About JBI Partnership</span>
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </button>
             </div>
-            
+
+            {/* Right Side - Image */}
             <div className="relative">
-              <div className="rounded-lg overflow-hidden shadow-2xl">
+              <div className="rounded-lg overflow-hidden shadow-2xl h-full">
                 <img 
-                  src={medicalResearchImage} 
-                  alt="Research and evidence-based healthcare"
-                  className="w-full h-96 object-cover"
+                  src={vision2Image} 
+                  alt="Research and laboratory work"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -186,8 +247,48 @@ const ResearchEvidence: React.FC = () => {
         </div>
       </section>
 
+      {/* Impact Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
+              Impact
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {impactAreas.map((area, index) => {
+              const IconComponent = area.icon;
+              return (
+                <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex flex-col">
+                    {/* Top - Number */}
+                    <div className="bg-ubuntu-blue-600 h-20 flex items-center justify-center">
+                      <span className="text-white text-4xl font-bold">{area.number}</span>
+                    </div>
+                    
+                    {/* Bottom - Content */}
+                    <div className="p-6">
+                      <div className="flex items-start mb-3">
+                        <IconComponent className="w-6 h-6 text-ubuntu-blue-600 mr-3 mt-1 flex-shrink-0" />
+                        <h3 className="text-xl font-bold text-gray-900">
+                          {area.title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-700 leading-relaxed">
+                        {area.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Publications Section */}
-      <section className="py-20 px-6 bg-ubuntu-blue-50">
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
@@ -201,7 +302,7 @@ const ResearchEvidence: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {publications.map((pub, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
+              <div key={index} className="bg-gray-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <div className="mb-4">
                   <FileText className="w-12 h-12 text-ubuntu-blue-600" />
                 </div>
@@ -221,82 +322,52 @@ const ResearchEvidence: React.FC = () => {
       </section>
 
       {/* Training Programs Section */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <div className="rounded-lg overflow-hidden shadow-2xl">
-                <img 
-                  src={vision2Image} 
-                  alt="Laboratory research and training"
-                  className="w-full h-96 object-cover"
-                />
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
+              Capacity Building & Training
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We provide comprehensive training programs that equip healthcare workers 
+              with the skills and knowledge needed to implement evidence-based practices 
+              in their communities.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <div className="w-16 h-16 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mb-6">
+                <GraduationCap className="w-8 h-8 text-white" />
               </div>
+              <h4 className="text-xl font-bold text-gray-900 mb-4">Systematic Review Training</h4>
+              <p className="text-gray-600 leading-relaxed">
+                Comprehensive training in systematic review methodologies and evidence synthesis 
+                for healthcare professionals.
+              </p>
             </div>
             
-            <div>
-              <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-6">
-                Capacity Building & Training
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                We provide comprehensive training programs that equip healthcare workers 
-                with the skills and knowledge needed to implement evidence-based practices 
-                in their communities.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                    <GraduationCap className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Systematic Review Training</h4>
-                    <p className="text-gray-600">Comprehensive training in systematic review methodologies and evidence synthesis.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                    <Award className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Evidence Implementation</h4>
-                    <p className="text-gray-600">Practical training on translating research evidence into clinical practice.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                    <BookOpen className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Research Methodology</h4>
-                    <p className="text-gray-600">Training in research design, data collection, and analysis techniques.</p>
-                  </div>
-                </div>
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <div className="w-16 h-16 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mb-6">
+                <Award className="w-8 h-8 text-white" />
               </div>
+              <h4 className="text-xl font-bold text-gray-900 mb-4">Evidence Implementation</h4>
+              <p className="text-gray-600 leading-relaxed">
+                Practical training on translating research evidence into clinical practice 
+                for improved patient outcomes.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 px-6 bg-ubuntu-blue-600 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Join Our Research Network
-          </h2>
-          <p className="text-xl mb-8 leading-relaxed">
-            Partner with us to advance evidence-based healthcare and contribute 
-            to improving health outcomes in underserved communities.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-              Become a Research Partner
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-ubuntu-blue-600 transition-colors">
-              View Training Programs
-            </button>
+            
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <div className="w-16 h-16 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mb-6">
+                <BookOpen className="w-8 h-8 text-white" />
+              </div>
+              <h4 className="text-xl font-bold text-gray-900 mb-4">Research Methodology</h4>
+              <p className="text-gray-600 leading-relaxed">
+                Training in research design, data collection, and analysis techniques 
+                for conducting rigorous health research.
+              </p>
+            </div>
           </div>
         </div>
       </section>

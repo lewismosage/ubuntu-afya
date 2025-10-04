@@ -1,79 +1,98 @@
 import React from "react";
-import { ArrowRight, Cpu, Database, Smartphone, Cloud, Shield, BarChart3 } from "lucide-react";
-import HealthTechnologyImage from "../assets/HealthTechnology.jpg";
-import vision1Image from "../assets/vission-1.jpg";
+import { ArrowRight, Database, TrendingUp, Activity, FileText, Users, Pill, DollarSign, Home } from "lucide-react";
 import ScrollToTop from "../components/common/ScrollToTop";
 
-const HealthTechnology: React.FC = () => {
-  const features = [
+import HeroHT from "../assets/hero-HT.jpg";
+import HealthTechnology from "../assets/HealthTechnology.jpg";
+
+const StoneHMIS: React.FC = () => {
+  const clinicalModules = [
     {
-      icon: Database,
-      title: "Real-time Data Collection",
-      description: "Capture patient data, treatment outcomes, and health indicators in real-time across all connected facilities.",
-      stats: ["100%", "Real-time Data", "24/7", "System Availability"]
+      icon: Users,
+      title: "Registration Module",
+      description: "Streamlined patient registration and demographic data management"
     },
     {
-      icon: Smartphone,
-      title: "Mobile Health Records",
-      description: "Access patient records, update treatments, and coordinate care using mobile devices and tablets.",
-      stats: ["50+", "Clinics Connected", "1000+", "Health Workers"]
+      icon: Activity,
+      title: "Clinical Module",
+      description: "Comprehensive clinical documentation and patient care tracking"
     },
     {
-      icon: Cloud,
-      title: "Cloud-based Platform",
-      description: "Secure, scalable cloud infrastructure ensuring data availability and system reliability across all locations.",
-      stats: ["99.9%", "Uptime", "Secure", "Data Storage"]
+      icon: FileText,
+      title: "Laboratory Module",
+      description: "Integrated lab test ordering, results management, and reporting"
+    },
+    {
+      icon: Pill,
+      title: "Pharmacy Module",
+      description: "Medication dispensing, inventory management, and drug tracking"
+    },
+    {
+      icon: DollarSign,
+      title: "Finance and Administration Module",
+      description: "Billing, payments, and administrative operations management"
+    },
+    {
+      icon: Home,
+      title: "Community Module",
+      description: "Community health worker tools and outreach program management"
     }
   ];
 
-  const systemCapabilities = [
-    "Electronic Health Records (EHR)",
-    "Patient registration and management",
-    "Treatment tracking and outcomes",
-    "Medication inventory management",
-    "Referral system coordination",
-    "Health reporting and analytics",
-    "Mobile app for health workers",
-    "Data visualization dashboards"
-  ];
-
-  const benefits = [
+  const impactAreas = [
     {
-      icon: BarChart3,
-      title: "Improved Decision Making",
-      description: "Real-time data enables health workers and administrators to make informed decisions about patient care and resource allocation."
-    },
-    {
-      icon: Shield,
-      title: "Enhanced Care Coordination",
-      description: "Seamless information sharing between facilities ensures continuity of care and reduces medical errors."
-    },
-    {
-      icon: Cpu,
+      number: "1",
       title: "Operational Efficiency",
-      description: "Automated processes and digital workflows reduce administrative burden and improve service delivery."
+      description: "Reduced paperwork and administrative burdens",
+      icon: TrendingUp
+    },
+    {
+      number: "2",
+      title: "Data Management",
+      description: "Streamlined the collection, storage, and analysis of health data.",
+      icon: Database
+    },
+    {
+      number: "3",
+      title: "Public Health Response",
+      description: "STONE-HMIS ability to fast track disease patterns and treatment outcomes has improved how we respond to public health emergencies.",
+      icon: Activity
     }
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       <ScrollToTop />
+      
       {/* Hero Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-ubuntu-orange-600 to-ubuntu-orange-500 text-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-20 px-6 text-white overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${HeroHT})`
+          }}
+        />
+          
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-ubuntu-blue-900/80 to-ubuntu-blue-1000/80"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="mb-6">
-            <span className="bg-white text-ubuntu-orange-600 font-bold px-4 py-2 text-sm uppercase tracking-wide">
+            <span className="bg-ubuntu-orange-500 text-white font-bold px-4 py-2 text-sm uppercase tracking-wide">
               HEALTH TECHNOLOGY
             </span>
           </div>
           
           <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            STONE-HMIS®: Digital Health Innovation
+            STONE-HMIS®
           </h1>
           
           <p className="text-xl lg:text-2xl mb-8 max-w-4xl leading-relaxed">
-            Our STONE-HMIS® connects clinics, communities, and county governments with real-time data 
-            to improve care, strengthen referrals, and guide decisions across health systems.
+            A comprehensive health management and information system designed to transform 
+            healthcare delivery in Kenya by integrating all hospital management modules 
+            under a singular, accessible platform.
           </p>
         </div>
       </section>
@@ -82,60 +101,132 @@ const HealthTechnology: React.FC = () => {
       <section className="py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="bg-ubuntu-blue-50 p-8 rounded-lg">
+              <div className="text-4xl font-bold text-ubuntu-blue-600 mb-2">25+</div>
+              <div className="text-lg font-semibold text-gray-800">Active Users</div>
+              <div className="text-gray-600">Healthcare facilities using STONE-HMIS®</div>
+            </div>
             <div className="bg-ubuntu-orange-50 p-8 rounded-lg">
-              <div className="text-4xl font-bold text-ubuntu-orange-600 mb-2">100%</div>
-              <div className="text-lg font-semibold text-gray-800">Real-time Data</div>
-              <div className="text-gray-600">Instant access to health information</div>
+              <div className="text-4xl font-bold text-ubuntu-orange-600 mb-2">6</div>
+              <div className="text-lg font-semibold text-gray-800">Clinical Modules</div>
+              <div className="text-gray-600">Integrated healthcare management tools</div>
             </div>
             <div className="bg-ubuntu-blue-50 p-8 rounded-lg">
-              <div className="text-4xl font-bold text-ubuntu-blue-600 mb-2">50+</div>
-              <div className="text-lg font-semibold text-gray-800">Clinics Connected</div>
-              <div className="text-gray-600">Across Kenya's health network</div>
-            </div>
-            <div className="bg-ubuntu-orange-50 p-8 rounded-lg">
-              <div className="text-4xl font-bold text-ubuntu-orange-600 mb-2">24/7</div>
-              <div className="text-lg font-semibold text-gray-800">System Availability</div>
-              <div className="text-gray-600">Reliable cloud infrastructure</div>
+              <div className="text-4xl font-bold text-ubuntu-blue-600 mb-2">100%</div>
+              <div className="text-lg font-semibold text-gray-800">Free & Open-Source</div>
+              <div className="text-gray-600">Supporting sustainable growth and impact</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Overview Section */}
+      <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
+              Overview
+            </h2>
+          </div>
+          
+          <div className="bg-white p-10 rounded-lg shadow-lg">
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Healthcare management is already undergoing substantial change with constant needs 
+              pointing to the development of a Health Information system that integrates all hospital 
+              management modules under a singular system. This has excluded the majority of patients 
+              and providers in Kenya from accessing the benefits of health technologies and prevented 
+              the comprehensive collection of national health data to aid in decision-making.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              STONE-HMIS® addresses this critical gap by providing an accessible, comprehensive solution 
+              that brings the benefits of health technologies to providers delivering the majority of 
+              healthcare in Kenya.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Approach Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Left Side - Our Approach */}
+            <div>
+              <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-8">
+                Our Approach
+              </h2>
+              <div className="space-y-6 text-gray-700 leading-relaxed">
+                <p>
+                  We designed and deployed STONE-HMIS®, a health management and information 
+                  system to track patient care and improve all management functions within our 
+                  network of Ubuntu-Afya Kiosk medical centers. STONE-HMIS® which can be adopted 
+                  by healthcare organizations both in the public and private realm, operates 
+                  across disease verticals and at all levels of care.
+                </p>
+                <p>
+                  Under a unified system, the health management information system offers 
+                  specialized clinical modules that work seamlessly together to provide 
+                  comprehensive healthcare management.
+                </p>
+                <p>
+                  STONE-HMIS® has also been designed to seamlessly integrate with existing 
+                  clinical workflows of healthcare providers. We believe that by bringing the 
+                  benefits of health technologies to providers delivering the majority of 
+                  healthcare in Kenya, we can improve quality of care for patients and existing 
+                  health databases and reporting systems.
+                </p>
+                <p>
+                  STONE-HMIS® is a free-ware, supporting its potential for growth and impact 
+                  in the coming years. Sustained impact will also leverage health data generated 
+                  by the system while costs of development stand to decrease over time.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side - Placeholder for Image */}
+            <div className="relative">
+              <div className="rounded-lg overflow-hidden shadow-2xl  bg-gradient-to-br from-ubuntu-blue-100 to-ubuntu-blue-200 flex items-center justify-center">
+                {/* Right Side - Image */}
+                <div className="relative">
+                  <div className="rounded-lg overflow-hidden shadow-2xl h-full">
+                    <img 
+                      src={HealthTechnology} 
+                      alt="STONE-HMIS workflow"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Clinical Modules Section */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
-              Advanced Health Information System
+              Specialized Clinical Modules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              STONE-HMIS® provides comprehensive digital health solutions designed 
-              specifically for resource-limited settings.
+              STONE-HMIS® offers a comprehensive suite of integrated modules designed 
+              to streamline every aspect of healthcare management.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {clinicalModules.map((module, index) => {
+              const IconComponent = module.icon;
               return (
-                <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
-                  <div className="flex items-center mb-6">
-                    <div className="p-3 bg-ubuntu-orange-100 rounded-lg mr-4">
-                      <IconComponent className="w-8 h-8 text-ubuntu-orange-600" />
+                <div key={index} className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex items-start mb-4">
+                    <div className="p-3 bg-ubuntu-blue-100 rounded-lg mr-4">
+                      <IconComponent className="w-8 h-8 text-ubuntu-blue-600" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">{feature.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mt-2">{module.title}</h3>
                   </div>
-                  <p className="text-gray-700 mb-6 leading-relaxed">{feature.description}</p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-ubuntu-orange-600">{feature.stats[0]}</div>
-                      <div className="text-sm text-gray-600">{feature.stats[1]}</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-ubuntu-blue-600">{feature.stats[2]}</div>
-                      <div className="text-sm text-gray-600">{feature.stats[3]}</div>
-                    </div>
-                  </div>
+                  <p className="text-gray-700 leading-relaxed">{module.description}</p>
                 </div>
               );
             })}
@@ -143,157 +234,75 @@ const HealthTechnology: React.FC = () => {
         </div>
       </section>
 
-      {/* System Capabilities Section */}
+      {/* Impact Section */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-6">
-                Comprehensive Health Management
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                STONE-HMIS® integrates all aspects of healthcare delivery into a single, 
-                user-friendly platform that works seamlessly across different devices and locations.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                {systemCapabilities.map((capability, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4"></div>
-                    <span className="text-gray-700">{capability}</span>
-                  </div>
-                ))}
-              </div>
-
-              <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center">
-                <span>Request Demo</span>
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </button>
-            </div>
-            
-            <div className="relative">
-              <div className="rounded-lg overflow-hidden shadow-2xl">
-                <img 
-                  src={HealthTechnologyImage} 
-                  alt="STONE-HMIS system in action"
-                  className="w-full h-96 object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 px-6 bg-ubuntu-blue-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="mb-16">
             <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
-              Transforming Healthcare Delivery
+              Impact
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how STONE-HMIS® is revolutionizing healthcare management 
-              and improving patient outcomes across Kenya.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => {
-              const IconComponent = benefit.icon;
+            {impactAreas.map((area, index) => {
+              const IconComponent = area.icon;
               return (
-                <div key={index} className="bg-white p-8 rounded-lg shadow-lg text-center">
-                  <div className="mb-6">
-                    <IconComponent className="w-16 h-16 text-ubuntu-orange-600 mx-auto" />
+                <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="flex flex-col">
+                    {/* Top - Number */}
+                    <div className="bg-ubuntu-blue-600 h-20 flex items-center justify-center">
+                      <span className="text-white text-4xl font-bold">{area.number}</span>
+                    </div>
+                    
+                    {/* Bottom - Content */}
+                    <div className="p-6">
+                      <div className="flex items-start mb-3">
+                        <IconComponent className="w-6 h-6 text-ubuntu-blue-600 mr-3 mt-1 flex-shrink-0" />
+                        <h3 className="text-xl font-bold text-gray-900">
+                          {area.title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-700 leading-relaxed">
+                        {area.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {benefit.description}
-                  </p>
                 </div>
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* Implementation Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <div className="rounded-lg overflow-hidden shadow-2xl">
-                <img 
-                  src={vision1Image} 
-                  alt="Healthcare worker using STONE-HMIS system"
-                  className="w-full h-96 object-cover"
-                />
+          {/* Key Benefits Section */}
+          <div className="mt-16 bg-ubuntu-blue-50 p-10 rounded-lg">
+            <h3 className="text-2xl font-bold text-ubuntu-blue-800 mb-6 text-center">
+              Key Benefits of STONE-HMIS®
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4 mt-2"></div>
+                <p className="text-gray-700">Seamless integration with existing clinical workflows</p>
+              </div>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4 mt-2"></div>
+                <p className="text-gray-700">Free and open-source for maximum accessibility</p>
+              </div>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4 mt-2"></div>
+                <p className="text-gray-700">Operates across all disease verticals and care levels</p>
+              </div>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4 mt-2"></div>
+                <p className="text-gray-700">Comprehensive data collection for better decision-making</p>
+              </div>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4 mt-2"></div>
+                <p className="text-gray-700">Suitable for both public and private healthcare organizations</p>
+              </div>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-4 mt-2"></div>
+                <p className="text-gray-700">Decreasing development costs over time</p>
               </div>
             </div>
-            
-            <div>
-              <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-6">
-                Easy Implementation & Training
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Our team provides comprehensive training and ongoing support to ensure 
-                smooth implementation and maximum utilization of the STONE-HMIS® system.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                    <span className="text-white font-bold text-sm">1</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">System Setup & Configuration</h4>
-                    <p className="text-gray-600">Custom installation and configuration tailored to your facility's needs.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                    <span className="text-white font-bold text-sm">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Staff Training & Support</h4>
-                    <p className="text-gray-600">Comprehensive training programs for all health workers and administrators.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-8 h-8 bg-ubuntu-orange-500 rounded-full flex items-center justify-center mr-4 mt-1">
-                    <span className="text-white font-bold text-sm">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Ongoing Maintenance</h4>
-                    <p className="text-gray-600">Continuous technical support and system updates to ensure optimal performance.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 px-6 bg-ubuntu-orange-600 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Ready to Digitize Your Health Facility?
-          </h2>
-          <p className="text-xl mb-8 leading-relaxed">
-            Join the growing network of health facilities using STONE-HMIS® 
-            to improve patient care and operational efficiency.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-ubuntu-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Schedule a Demo
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-ubuntu-orange-600 transition-colors">
-              Contact Our Team
-            </button>
           </div>
         </div>
       </section>
@@ -301,4 +310,4 @@ const HealthTechnology: React.FC = () => {
   );
 };
 
-export default HealthTechnology;
+export default StoneHMIS;

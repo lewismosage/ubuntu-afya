@@ -31,7 +31,7 @@ const Overview: React.FC = () => {
             </div>
             <div className="flex items-center">
               <p className="text-xl text-gray-600 leading-relaxed">
-                At Obuntu Afya, we believe everyone no matter where they live
+                At Ubuntu Afya, we believe everyone no matter where they live
                 deserves access to high quality, compassionate care.
               </p>
             </div>
@@ -48,49 +48,17 @@ const Overview: React.FC = () => {
         </div>
       </section>
 
-      {/* Second Section - Mission Content */}
+      {/* Mission & Vision Section */}
       <section className="py-16 px-6 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Opening paragraph */}
-          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            That's why we work alongside communities to build healthcare systems
-            that last.
-          </p>
-
-          {/* Three column text */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16 text-center">
-            <div>
-              <p className="text-base text-gray-600 leading-relaxed">
-                Our work isn't just about building clinics it's about building
-                systems.
-              </p>
-            </div>
-            <div>
-              <p className="text-base text-gray-600 leading-relaxed">
-                Not just access, but excellence.
-              </p>
-            </div>
-            <div>
-              <p className="text-base text-gray-600 leading-relaxed">
-                Not just care, but compassion and continuity.
-              </p>
-            </div>
-          </div>
-
-          {/* Bottom paragraph */}
-          <p className="text-base text-gray-600 mb-16 leading-relaxed">
-            We bring projects to life with local teams, essential services, and
-            sustainable systems that meet real needs, every day.
-          </p>
-
+        <div className="max-w-7xl mx-auto">
           {/* Mission & Vision with images */}
-          <div className="grid md:grid-cols-2 gap-16 mb-16">
+          <div className="grid md:grid-cols-2 gap-16 mb-20">
             {/* Mission column */}
             <div className="text-left">
-              <h3 className="text-2xl font-bold text-ubuntu-orange-600 mb-4">
+              <h3 className="text-3xl font-bold text-ubuntu-orange-600 mb-6">
                 Our Mission
               </h3>
-              <p className="text-ubuntu-blue-800 font-semibold mb-8 leading-relaxed">
+              <p className="text-xl text-ubuntu-blue-800 font-semibold mb-8 leading-relaxed">
                 To strengthen community owned health systems and expand access
                 to affordable care in Kenya's underserved communities.
               </p>
@@ -123,10 +91,10 @@ const Overview: React.FC = () => {
 
             {/* Vision column */}
             <div className="text-left">
-              <h3 className="text-2xl font-bold text-ubuntu-orange-600 mb-4">
+              <h3 className="text-3xl font-bold text-ubuntu-orange-600 mb-6">
                 Our Vision
               </h3>
-              <p className="text-ubuntu-blue-800 font-semibold mb-8 leading-relaxed">
+              <p className="text-xl text-ubuntu-blue-800 font-semibold mb-8 leading-relaxed">
                 A future where African health systems are locally led, resilient
                 and equitable
               </p>
@@ -150,11 +118,57 @@ const Overview: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Our Approach Section - Redesigned */}
+          <div className="max-w-5xl mx-auto">
+            <h3 className="text-3xl font-bold text-ubuntu-blue-800 mb-8 text-center">
+              Our Approach
+            </h3>
+            
+            {/* Opening statement */}
+            <p className="text-2xl text-ubuntu-blue-900 font-semibold mb-12 text-center leading-relaxed">
+              That's why we work alongside communities to build healthcare systems
+              that last.
+            </p>
+
+            {/* Three pillars in cards */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <div className="h-2 w-12 bg-ubuntu-orange-500 mb-4"></div>
+                <p className="text-lg text-gray-800 font-medium leading-relaxed">
+                  Our work isn't just about building clinics — it's about building
+                  <span className="text-ubuntu-blue-800 font-bold"> systems</span>.
+                </p>
+              </div>
+              
+              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <div className="h-2 w-12 bg-ubuntu-orange-500 mb-4"></div>
+                <p className="text-lg text-gray-800 font-medium leading-relaxed">
+                  Not just access, but
+                  <span className="text-ubuntu-blue-800 font-bold"> excellence</span>.
+                </p>
+              </div>
+              
+              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                <div className="h-2 w-12 bg-ubuntu-orange-500 mb-4"></div>
+                <p className="text-lg text-gray-800 font-medium leading-relaxed">
+                  Not just care, but
+                  <span className="text-ubuntu-blue-800 font-bold"> compassion and continuity</span>.
+                </p>
+              </div>
+            </div>
+
+            {/* Closing statement */}
+            <p className="text-xl text-gray-700 text-center leading-relaxed">
+              We bring projects to life with local teams, essential services, and
+              sustainable systems that meet real needs, every day.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Fourth Section - 2030 Goals */}
-      <section className="py-20 px-6 bg-ubuntu-blue-50 text-center">
+      {/* 2030 Goals Section */}
+      <section className="py-20 px-6 bg-white text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-ubuntu-blue-800 mb-4">
             Our goal by 2030:
@@ -187,7 +201,7 @@ const Overview: React.FC = () => {
         </div>
       </section>
 
-      {/* Fifth Section - Call to Action */}
+      {/* Call to Action Section */}
       <section className="bg-ubuntu-blue-600 text-white relative overflow-hidden">
         <div className="grid lg:grid-cols-2 items-stretch min-h-[500px]">
           {/* Left side - Pediatric care image - Full coverage */}
@@ -200,7 +214,7 @@ const Overview: React.FC = () => {
           </div>
 
           {/* Right side - Content */}
-          <div className="flex flex-col justify-center px-6">
+          <div className="flex flex-col justify-center px-12 py-16">
             <h2 className="text-4xl font-bold mb-8 leading-tight">
               Let's transform lives and build healthier futures.
             </h2>
@@ -211,7 +225,7 @@ const Overview: React.FC = () => {
               build healthier futures.
             </p>
 
-            <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-200">
+            <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-200 self-start">
               Support Our Work
             </button>
           </div>

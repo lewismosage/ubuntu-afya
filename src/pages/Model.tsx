@@ -15,7 +15,8 @@ const Model: React.FC = () => {
             alt="Ubuntu-Afya Community Healthcare"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/40"></div> {/* Overlay for better text readability */}
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/40"></div>{" "}
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto text-center">
@@ -32,18 +33,7 @@ const Model: React.FC = () => {
           <p className="text-xl lg:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
             Ubuntu Transforming healthcare delivery through community ownership, financial sustainability, 
             and integrated services across Kenya's rural and underserved communities.
-           
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold px-8 py-3 rounded-full transition-colors flex items-center justify-center">
-              <span>Learn How It Works</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </button>
-            <button className="bg-white/20 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full transition-colors border border-white">
-              Download PDF
-            </button>
-          </div>
         </div>
       </section>
 

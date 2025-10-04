@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, Loader2 } from 'lucide-react';
+import contactUsImage from '../assets/Contact-Us.jpg';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -63,47 +64,68 @@ const ContactPage = () => {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-teal-900 via-teal-800 to-blue-700 text-white">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-black opacity-50"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 relative py-24">
+      {/* Hero Section - Updated with second page's design */}
+      <section className="py-16 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {/* Contact label */}
           <motion.div 
-            className="text-center"
+            className="mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="mb-6">
-              <span className="bg-yellow-400 text-black font-bold px-4 py-2 text-sm uppercase tracking-wide">
-                CONTACT US
-              </span>
-            </div>
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6">Get in Touch</h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Ready to transform healthcare together? We're here to answer your questions, 
-              discuss partnerships, and help you get involved in our mission.
-            </p>
+             <span className="bg-ubuntu-orange-500 text-white font-bold px-4 py-2 text-sm uppercase tracking-wide">
+               CONTACT US
+             </span>
           </motion.div>
+
+          {/* Split layout - Content left, image right */}
+          <div className="grid lg:grid-cols-2 gap-16 mb-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+               <h1 className="text-5xl lg:text-6xl font-bold text-ubuntu-blue-800 leading-tight mb-6">
+                 Let's Start a Conversation
+               </h1>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Ready to transform healthcare together? We're here to answer your questions, 
+                discuss partnerships, and help you get involved in our mission.
+              </p>
+            </motion.div>
+            
+            {/* Hero image - positioned on the right */}
+            <motion.div 
+              className="h-96 rounded-lg overflow-hidden shadow-lg"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <img
+                src={contactUsImage}
+                alt="Ubuntu Afya team ready to connect"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - Rest of your original content remains the same */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 -mt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Information */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div className="p-8">
-                  <h2 className="text-2xl font-bold text-teal-800 mb-6">
-                    Get in Touch
-                  </h2>
+                   <h2 className="text-2xl font-bold text-ubuntu-blue-800 mb-6">
+                     Get in Touch
+                   </h2>
                   <div className="space-y-6">
                     <div className="flex items-start">
-                      <MapPin className="h-6 w-6 text-teal-600 mt-1" />
+                      <MapPin className="h-6 w-6 text-ubuntu-orange-600 mt-1" />
                       <div className="ml-4">
                         <h3 className="text-lg font-medium text-gray-900">
                           Visit Us
@@ -116,39 +138,39 @@ const ContactPage = () => {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <Phone className="h-6 w-6 text-teal-600 mt-1" />
+                      <Phone className="h-6 w-6 text-ubuntu-orange-600 mt-1" />
                       <div className="ml-4">
                         <h3 className="text-lg font-medium text-gray-900">
                           Call Us
                         </h3>
                         <p className="mt-1 text-gray-600">
-                          <a
-                            href="tel:+254700123456"
-                            className="text-teal-600 hover:underline"
-                          >
-                            +254 700 123 456
-                          </a>
+                           <a
+                             href="tel:+254700123456"
+                             className="text-ubuntu-orange-600 hover:underline"
+                           >
+                             +254 700 123 456
+                           </a>
                         </p>
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <Mail className="h-6 w-6 text-teal-600 mt-1" />
+                      <Mail className="h-6 w-6 text-ubuntu-orange-600 mt-1" />
                       <div className="ml-4">
                         <h3 className="text-lg font-medium text-gray-900">
                           Email Us
                         </h3>
                         <p className="mt-1 text-gray-600">
-                          <a
-                            href="mailto:info@ubuntuafya.org"
-                            className="text-teal-600 hover:underline"
-                          >
-                            info@ubuntuafya.org
-                          </a>
+                           <a
+                             href="mailto:info@ubuntuafya.org"
+                             className="text-ubuntu-orange-600 hover:underline"
+                           >
+                             info@ubuntuafya.org
+                           </a>
                         </p>
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <Clock className="h-6 w-6 text-teal-600 mt-1" />
+                      <Clock className="h-6 w-6 text-ubuntu-orange-600 mt-1" />
                       <div className="ml-4">
                         <h3 className="text-lg font-medium text-gray-900">
                           Office Hours
@@ -168,9 +190,9 @@ const ContactPage = () => {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div className="p-8">
-                  <h2 className="text-2xl font-bold text-teal-800 mb-6">
-                    Send Us a Message
-                  </h2>
+                   <h2 className="text-2xl font-bold text-ubuntu-blue-800 mb-6">
+                     Send Us a Message
+                   </h2>
 
                   {/* Status Message */}
                   {status.type && (
@@ -200,7 +222,7 @@ const ContactPage = () => {
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition-colors"
+                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-ubuntu-orange-500 focus:ring-2 focus:ring-ubuntu-orange-200 focus:outline-none transition-colors"
                           required
                           placeholder="Your full name"
                         />
@@ -218,7 +240,7 @@ const ContactPage = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition-colors"
+                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-ubuntu-orange-500 focus:ring-2 focus:ring-ubuntu-orange-200 focus:outline-none transition-colors"
                           required
                           placeholder="your.email@example.com"
                         />
@@ -239,7 +261,7 @@ const ContactPage = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition-colors"
+                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-ubuntu-orange-500 focus:ring-2 focus:ring-ubuntu-orange-200 focus:outline-none transition-colors"
                           placeholder="+254 700 000 000"
                         />
                       </div>
@@ -255,7 +277,7 @@ const ContactPage = () => {
                           name="preferred_contact_method"
                           value={formData.preferred_contact_method}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition-colors"
+                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-ubuntu-orange-500 focus:ring-2 focus:ring-ubuntu-orange-200 focus:outline-none transition-colors"
                         >
                           <option value="email">Email</option>
                           <option value="phone">Phone</option>
@@ -276,7 +298,7 @@ const ContactPage = () => {
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition-colors"
+                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-ubuntu-orange-500 focus:ring-2 focus:ring-ubuntu-orange-200 focus:outline-none transition-colors"
                         required
                       >
                         <option value="">Select a subject</option>
@@ -302,7 +324,7 @@ const ContactPage = () => {
                         rows={6}
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition-colors resize-vertical"
+                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-ubuntu-orange-500 focus:ring-2 focus:ring-ubuntu-orange-200 focus:outline-none transition-colors resize-vertical"
                         required
                         placeholder="Tell us how we can help you..."
                       />
@@ -312,7 +334,7 @@ const ContactPage = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 px-6 rounded-lg transition-colors flex items-center justify-center disabled:opacity-75"
+                         className="w-full bg-ubuntu-orange-600 hover:bg-ubuntu-orange-700 text-white font-bold py-4 px-6 rounded-lg transition-colors flex items-center justify-center disabled:opacity-75"
                       >
                         {isSubmitting ? (
                           <>
@@ -338,7 +360,7 @@ const ContactPage = () => {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="aspect-w-16 aspect-h-9">
                 <iframe
-                  src="https://www.google.com/maps?q=Pioneer+House,+Kenyatta+Avenue,+Nairobi,+Kenya&output=embed"
+                  src="https://www.google.com/maps?q=5th+Avenue+Suites+Road,+Nairobi&hl=en&z=16&output=embed"
                   width="100%"
                   height="450"
                   style={{ border: 0 }}
@@ -352,7 +374,7 @@ const ContactPage = () => {
                   href="https://www.google.com/maps/dir/?api=1&destination=Pioneer+House,+Kenyatta+Avenue,+Nairobi,+Kenya"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-3 rounded-lg transition-colors"
+                   className="bg-ubuntu-orange-600 hover:bg-ubuntu-orange-700 text-white font-bold px-6 py-3 rounded-lg transition-colors"
                 >
                   Get Directions
                 </a>

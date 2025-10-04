@@ -33,16 +33,6 @@ const Strategy: React.FC = () => {
             Transforming rural healthcare across Kenya through community-driven
             innovation and sustainable partnerships.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold px-8 py-3 rounded-full transition-colors flex items-center justify-center">
-              <span>Learn More</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </button>
-            <button className="bg-white/20 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full transition-colors border border-white">
-              Download Strategy
-            </button>
-          </div>
         </div>
       </section>
 

@@ -96,16 +96,6 @@ const Partnerships: React.FC = () => {
             See how your church, business, or group can make an impact. Together, we can transform 
             healthcare access and build sustainable communities.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-bold px-8 py-3 rounded-full transition-colors flex items-center justify-center">
-              <span>Become a Partner</span>
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </button>
-            <button className="bg-white/20 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full transition-colors border border-white">
-              Download Partnership Guide
-            </button>
-          </div>
         </div>
       </section>
 
@@ -185,10 +175,6 @@ const Partnerships: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  
-                  <button className="w-full bg-ubuntu-blue-600 hover:bg-ubuntu-blue-700 text-white py-2 rounded-full font-semibold transition-colors">
-                    Learn More
-                  </button>
                 </div>
               );
             })}
@@ -252,9 +238,6 @@ const Partnerships: React.FC = () => {
           <div className="text-center">
             <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-bold px-8 py-3 rounded-full transition-colors mr-4">
               Contact Our Team
-            </button>
-            <button className="bg-ubuntu-blue-600 hover:bg-ubuntu-blue-700 text-white font-bold px-8 py-3 rounded-full transition-colors">
-              Download Partnership Kit
             </button>
           </div>
         </div>
