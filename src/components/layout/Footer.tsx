@@ -39,9 +39,9 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-teal-800 text-white">
+    <footer className="bg-ubuntu-blue-700 text-white">
       {/* Newsletter Section */}
-      <div className="border-b border-teal-700">
+      <div className="border-b border-ubuntu-blue-600">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="max-w-4xl">
             <h3 className="text-2xl font-bold mb-4">
@@ -51,9 +51,9 @@ const Footer: React.FC = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ubuntu-orange-400"
               />
-              <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-full font-semibold transition-colors flex items-center justify-center space-x-2">
+              <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-colors flex items-center justify-center space-x-2">
                 <span>Subscribe</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -69,8 +69,8 @@ const Footer: React.FC = () => {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
               <div>
-                <h2 className="text-2xl font-bold text-blue-800">
-                  UBUNTU <span className="text-orange-500">AFYA</span>
+                <h2 className="text-2xl font-bold text-white">
+                  UBUNTU <span className="text-ubuntu-orange-500">AFYA</span>
                 </h2>
               </div>
             </Link>
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 bg-teal-700/50 rounded-lg flex items-center justify-center hover:bg-teal-600 transition-colors"
+                  className="w-10 h-10 bg-ubuntu-blue-600/50 rounded-lg flex items-center justify-center hover:bg-ubuntu-blue-600 transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
 
           {/* Who We Are */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-yellow-400">
+            <h3 className="text-lg font-semibold mb-6 text-ubuntu-orange-400">
               WHO WE ARE
             </h3>
             <ul className="space-y-3">
@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
                   <li key={item}>
                     <Link
                       to={linkMap[item] || "#"}
-                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                      className="text-ubuntu-blue-100 hover:text-ubuntu-orange-400 transition-colors duration-200 text-sm"
                     >
                       {item}
                     </Link>
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
 
           {/* Our Work */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-yellow-400">
+            <h3 className="text-lg font-semibold mb-6 text-ubuntu-orange-400">
               OUR WORK
             </h3>
             <ul className="space-y-3">
@@ -130,7 +130,7 @@ const Footer: React.FC = () => {
                   <li key={item}>
                     <Link
                       to={linkMap[item] || "#"}
-                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                      className="text-ubuntu-blue-100 hover:text-ubuntu-orange-400 transition-colors duration-200 text-sm"
                     >
                       {item}
                     </Link>
@@ -142,7 +142,7 @@ const Footer: React.FC = () => {
 
           {/* Get Involved */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-yellow-400">
+            <h3 className="text-lg font-semibold mb-6 text-ubuntu-orange-400">
               GET INVOLVED
             </h3>
             <ul className="space-y-3">
@@ -158,7 +158,7 @@ const Footer: React.FC = () => {
                   <li key={item}>
                     <Link
                       to={linkMap[item] || "#"}
-                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                      className="text-ubuntu-blue-100 hover:text-ubuntu-orange-400 transition-colors duration-200 text-sm"
                     >
                       {item}
                     </Link>
@@ -170,7 +170,7 @@ const Footer: React.FC = () => {
 
           {/* Resources */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-yellow-400">
+            <h3 className="text-lg font-semibold mb-6 text-ubuntu-orange-400">
               RESOURCES
             </h3>
             <ul className="space-y-3">
@@ -185,7 +185,7 @@ const Footer: React.FC = () => {
                   <li key={item}>
                     <Link
                       to={linkMap[item] || "#"}
-                      className="text-teal-100 hover:text-yellow-400 transition-colors duration-200 text-sm"
+                      className="text-ubuntu-blue-100 hover:text-ubuntu-orange-400 transition-colors duration-200 text-sm"
                     >
                       {item}
                     </Link>
@@ -197,10 +197,10 @@ const Footer: React.FC = () => {
             {/* Contact Info */}
             <div className="mt-8">
               <div className="flex items-center space-x-3 mb-3">
-                <Mail className="w-5 h-5 text-yellow-400" />
+                <Mail className="w-5 h-5 text-ubuntu-orange-400" />
                 <a
-                  href="mailto:info@oneworldhealth.org"
-                  className="text-teal-100 hover:text-yellow-400 transition-colors text-sm"
+                  href="mailto:info@ubuntuafya.org"
+                  className="text-ubuntu-blue-100 hover:text-ubuntu-orange-400 transition-colors text-sm"
                 >
                   info@ubuntuafya.org
                 </a>
@@ -211,28 +211,28 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-teal-700">
+      <div className="border-t border-ubuntu-blue-600">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-teal-200 text-sm">
-              © {currentYear} OneWorld Health. All Rights Reserved.
+            <div className="text-ubuntu-blue-200 text-sm">
+              © {currentYear} Ubuntu Afya. All Rights Reserved.
             </div>
-            <div className="flex space-x-6 text-sm text-teal-200">
+            <div className="flex space-x-6 text-sm text-ubuntu-blue-200">
               <Link
                 to="/privacy"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-ubuntu-orange-400 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 to="/cookie-policy"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-ubuntu-orange-400 transition-colors"
               >
                 Cookie Policy
               </Link>
               <Link
                 to="/terms"
-                className="hover:text-yellow-400 transition-colors"
+                className="hover:text-ubuntu-orange-400 transition-colors"
               >
                 Terms & Conditions
               </Link>

@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowRight, Target, Cpu, BookOpen } from "lucide-react";
 import impactHero from "../assets/pediatric.jpg";
-import hospitalWaitingImage from "../assets/hospital-waiting.jpg";
+import UbuntuAfyaKiosk from "../assets/Ubuntu-Afya-Kiosks.jpg";
 import medicalHealthcareImage from "../assets/medical-healthcare.jpg";
 import medicalResearchImage from "../assets/medical-research.jpg";
 
@@ -18,7 +18,7 @@ const Impact: React.FC = () => {
         { value: "290K+", label: "Patients Served" },
         { value: "60%", label: "Women & Children" },
       ],
-      image: hospitalWaitingImage,
+      image: UbuntuAfyaKiosk,
       color: "teal",
     },
     {

@@ -36,7 +36,7 @@ const Header = () => {
 
   const navigation = [
     {
-      name: "Who We Are",
+      name: "Our Story",
       hasDropdown: true,
       dropdownItems: [
         {
@@ -54,6 +54,12 @@ const Header = () => {
           name: "Impact Reports",
           description: "Explore the data behind our mission and milestones.",
           link: "/impact",
+        },
+        {
+          name: "Partnerships",
+          description:
+            "See how your church, business, or group can make an impact.",
+          link: "/partnerships",
         },
       ],
     },
@@ -96,12 +102,7 @@ const Header = () => {
             "Your gift brings life-saving care to communities in need.",
           link: "/donate",
         },
-        {
-          name: "Partnerships",
-          description:
-            "See how your church, business, or group can make an impact.",
-          link: "/partnerships",
-        },
+        
         {
           name: "Events",
           description: "Join us for events that support global health.",
@@ -167,7 +168,7 @@ const Header = () => {
   return (
     <>
       <header
-        className="bg-teal-600 sticky top-0 z-50 relative"
+        className="bg-ubuntu-blue-600 sticky top-0 z-50 relative"
         ref={dropdownRef}
       >
         {/* Background pattern */}
@@ -192,8 +193,8 @@ const Header = () => {
                 />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-blue-800">
-                  Ubuntu <span className="text-orange-500">Afya</span>
+                <h1 className="text-2xl font-bold text-white">
+                  Ubuntu <span className="text-ubuntu-orange-500">Afya</span>
                 </h1>
               </div>
             </a>
@@ -208,13 +209,13 @@ const Header = () => {
                   onMouseLeave={handleMouseLeave}
                 >
                   <button
-                    className={`flex items-center space-x-1 font-medium transition-all duration-200 px-4 py-2 rounded-lg text-white hover:text-yellow-400 ${
-                      activeDropdown === item.name ? "text-yellow-400" : ""
+                    className={`flex items-center space-x-1 font-medium transition-all duration-200 px-4 py-2 rounded-lg text-white hover:text-ubuntu-orange-300 ${
+                      activeDropdown === item.name ? "text-ubuntu-orange-300" : ""
                     }`}
                   >
                     <span>{item.name}</span>
                     {activeDropdown === item.name ? (
-                      <span className="text-yellow-400 text-lg">×</span>
+                      <span className="text-ubuntu-orange-300 text-lg">×</span>
                     ) : (
                       <span className="text-white text-lg">+</span>
                     )}
@@ -223,7 +224,7 @@ const Header = () => {
                   {/* Full Width Horizontal Dropdown Menu */}
                   {activeDropdown === item.name && (
                     <div
-                      className="fixed left-0 right-0 top-20 bg-teal-700 shadow-xl border-t border-teal-600 z-50"
+                      className="fixed left-0 right-0 top-20 bg-ubuntu-blue-700 shadow-xl border-t border-ubuntu-blue-600 z-50"
                       onMouseEnter={handleDropdownMouseEnter}
                       onMouseLeave={handleDropdownMouseLeave}
                     >
@@ -234,16 +235,16 @@ const Header = () => {
                               key={dropdownItem.name}
                               href={dropdownItem.link}
                               onClick={handleDropdownItemClick}
-                              className={`px-6 py-6 hover:bg-teal-600 transition-colors group border-r border-teal-600 last:border-r-0 ${
+                              className={`px-6 py-6 hover:bg-ubuntu-blue-600 transition-colors group border-r border-ubuntu-blue-600 last:border-r-0 ${
                                 index === 0
-                                  ? "border-l-4 border-l-yellow-400"
+                                  ? "border-l-4 border-l-ubuntu-orange-400"
                                   : ""
                               }`}
                             >
-                              <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors mb-3">
+                              <h3 className="text-xl font-bold text-white group-hover:text-ubuntu-orange-300 transition-colors mb-3">
                                 {dropdownItem.name}
                               </h3>
-                              <p className="text-sm text-teal-200 leading-relaxed">
+                              <p className="text-sm text-ubuntu-blue-200 leading-relaxed">
                                 {dropdownItem.description}
                               </p>
                             </a>
@@ -256,7 +257,7 @@ const Header = () => {
                             }).map((_, index) => (
                               <div
                                 key={`empty-${index}`}
-                                className="px-6 py-6 border-r border-teal-600 last:border-r-0"
+                                className="px-6 py-6 border-r border-ubuntu-blue-600 last:border-r-0"
                               ></div>
                             ))}
                         </div>
@@ -271,7 +272,7 @@ const Header = () => {
             <div className="hidden lg:flex items-center">
               <a
                 href="/donate"
-                className="bg-white border-2 border-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200"
+                className="bg-white border-2 border-white text-ubuntu-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200"
               >
                 Donate
               </a>
@@ -280,7 +281,7 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-white hover:bg-teal-700 transition-colors"
+              className="lg:hidden p-2 rounded-lg text-white hover:bg-ubuntu-blue-700 transition-colors"
             >
               {isMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -293,13 +294,13 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-teal-700 shadow-lg">
+          <div className="lg:hidden bg-ubuntu-blue-700 shadow-lg">
             <div className="px-6 py-4 space-y-2">
               {navigation.map((item) => (
                 <div key={item.name}>
                   <button
                     onClick={() => handleDropdownToggle(item.name)}
-                    className="flex items-center justify-between w-full px-4 py-3 text-left font-medium text-white hover:text-yellow-400 hover:bg-teal-600 rounded-lg transition-colors"
+                    className="flex items-center justify-between w-full px-4 py-3 text-left font-medium text-white hover:text-ubuntu-orange-300 hover:bg-ubuntu-blue-600 rounded-lg transition-colors"
                   >
                     <span>{item.name}</span>
                     <ChevronDown
@@ -316,12 +317,12 @@ const Header = () => {
                           key={dropdownItem.name}
                           href={dropdownItem.link}
                           onClick={handleDropdownItemClick}
-                          className="block px-4 py-3 rounded-lg hover:bg-teal-600 transition-colors"
+                          className="block px-4 py-3 rounded-lg hover:bg-ubuntu-blue-600 transition-colors"
                         >
                           <div className="text-white font-medium mb-1">
                             {dropdownItem.name}
                           </div>
-                          <div className="text-sm text-teal-200">
+                          <div className="text-sm text-ubuntu-blue-200">
                             {dropdownItem.description}
                           </div>
                         </a>
@@ -333,7 +334,7 @@ const Header = () => {
               <a
                 href="/donate"
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full bg-white text-teal-700 px-4 py-3 rounded-lg font-semibold text-center mt-4 hover:bg-gray-100 transition-colors"
+                className="block w-full bg-white text-ubuntu-blue-700 px-4 py-3 rounded-lg font-semibold text-center mt-4 hover:bg-gray-100 transition-colors"
               >
                 Donate
               </a>

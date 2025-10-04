@@ -34,12 +34,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2563eb;
+  background: #005696;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d4ed8;
+  background: #003f6b;
 }
 
 /* Animation utilities */
@@ -103,15 +103,15 @@ html {
 
 /* Custom components */
 .btn-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-200 shadow-lg;
+  @apply bg-ubuntu-blue-600 hover:bg-ubuntu-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-ubuntu-blue-200 shadow-lg;
 }
 
 .btn-secondary {
-  @apply bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-200 shadow-lg;
+  @apply bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-ubuntu-orange-200 shadow-lg;
 }
 
 .btn-outline {
-  @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-200;
+  @apply border-2 border-ubuntu-blue-600 text-ubuntu-blue-600 hover:bg-ubuntu-blue-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-ubuntu-blue-200;
 }
 
 .section-padding {
@@ -127,11 +127,11 @@ html {
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 50%, #ea580c 100%);
+  background: linear-gradient(135deg, #005696 0%, #003f6b 50%, #f7931e 100%);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #2563eb, #ea580c);
+  background: linear-gradient(135deg, #005696, #f7931e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -144,10 +144,25 @@ html {
 
 /* Focus visible for accessibility */
 .focus-visible {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  @apply outline-none ring-2 ring-ubuntu-blue-500 ring-offset-2;
 }
 
 /* Skip to main content link */
 .skip-link {
-  @apply absolute -top-40 left-6 bg-blue-600 text-white px-4 py-2 rounded-md z-50 focus:top-6 transition-all duration-200;
+  @apply absolute -top-40 left-6 bg-ubuntu-blue-600 text-white px-4 py-2 rounded-md z-50 focus:top-6 transition-all duration-200;
+}
+
+/* Line clamp utilities for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

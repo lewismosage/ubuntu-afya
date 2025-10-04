@@ -2,6 +2,20 @@ import React from "react";
 import { Building, Users, Heart, ArrowRight } from "lucide-react";
 import partnershipsHero from "../assets/pediatric.jpg";
 
+// Import partner logos
+import countyInnovationLogo from "../assets/County-Innovation-Challenge-Fund.png";
+import carbonTrustLogo from "../assets/Carbon-Trust.png";
+import lilianeFondsLogo from "../assets/Liliane-Fonds.png";
+import internationalTransactionsLogo from "../assets/International-Transactions-Clinic.png";
+import cheshireDisabilityLogo from "../assets/Cheshire-Disability-Services-Kenya.png";
+import turkanaCountyLogo from "../assets/Turkana-COunty.png";
+import grandChallengesLogo from "../assets/Grand-challenges.png";
+import twiningLogo from "../assets/Twining.png";
+import pfizerLogo from "../assets/The-Pfizer.png";
+import ukaidLogo from "../assets/UKaid.png";
+import jbiLogo from "../assets/JBI.png";
+import innovationsLogo from "../assets/Innovations-in-healthcare.png";
+
 const Partnerships: React.FC = () => {
   const partnershipTypes = [
     {
@@ -40,16 +54,24 @@ const Partnerships: React.FC = () => {
   ];
 
   const currentPartners = [
-    { name: "Joanna Briggs Institute", type: "Research Partner", logo: "jbi-logo.jpg" },
-    { name: "Kenya Ministry of Health", type: "Government Partner", logo: "moh-logo.jpg" },
-    { name: "Tech for Good Foundation", type: "Technology Partner", logo: "tech-logo.jpg" },
-    { name: "Global Health Alliance", type: "Implementation Partner", logo: "gha-logo.jpg" }
+    { name: "County Innovation Challenge Fund", type: "Government Partner", logo: countyInnovationLogo },
+    { name: "Carbon Trust", type: "Environmental Partner", logo: carbonTrustLogo },
+    { name: "Liliane Fonds", type: "Disability Services Partner", logo: lilianeFondsLogo },
+    { name: "International Transactions Clinic", type: "Academic Partner", logo: internationalTransactionsLogo },
+    { name: "Cheshire Disability Services Kenya", type: "Community Partner", logo: cheshireDisabilityLogo },
+    { name: "Turkana County Government", type: "Government Partner", logo: turkanaCountyLogo },
+    { name: "Grand Challenges Canada", type: "Research Partner", logo: grandChallengesLogo },
+    { name: "Twinings", type: "Corporate Partner", logo: twiningLogo },
+    { name: "The Pfizer Foundation", type: "Pharmaceutical Partner", logo: pfizerLogo },
+    { name: "UKAID", type: "International Development Partner", logo: ukaidLogo },
+    { name: "Joanna Briggs Institute", type: "Research Partner", logo: jbiLogo },
+    { name: "Innovations in Healthcare", type: "Healthcare Innovation Partner", logo: innovationsLogo }
   ];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 px-6 bg-gradient-to-br from-teal-900/80 to-blue-900/80 text-white">
+      <section className="relative py-20 px-6 bg-gradient-to-br from-ubuntu-blue-900/80 to-ubuntu-blue-800/80 text-white">
         <div className="absolute inset-0 z-0">
           <img 
             src={partnershipsHero} 
@@ -61,7 +83,7 @@ const Partnerships: React.FC = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto text-center">
           <div className="mb-6">
-            <span className="bg-yellow-400 text-black font-bold px-4 py-2 text-sm uppercase tracking-wide">
+            <span className="bg-ubuntu-orange-500 text-white font-bold px-4 py-2 text-sm uppercase tracking-wide">
               PARTNERSHIPS
             </span>
           </div>
@@ -76,7 +98,7 @@ const Partnerships: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold px-8 py-3 rounded-full transition-colors flex items-center justify-center">
+            <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-bold px-8 py-3 rounded-full transition-colors flex items-center justify-center">
               <span>Become a Partner</span>
               <ArrowRight className="w-4 h-4 ml-2" />
             </button>
@@ -91,7 +113,7 @@ const Partnerships: React.FC = () => {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-800 mb-4">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
               Why Partner With Ubuntu Afya?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -118,11 +140,11 @@ const Partnerships: React.FC = () => {
               }
             ].map((item, index) => (
               <div key={index} className="bg-white p-8 rounded-lg shadow-sm text-center">
-                <h3 className="text-xl font-bold text-teal-800 mb-3">{item.title}</h3>
+                <h3 className="text-xl font-bold text-ubuntu-blue-800 mb-3">{item.title}</h3>
                 <p className="text-gray-600 mb-4">{item.description}</p>
                 <div className="space-y-1">
                   {item.metrics.map((metric, metricIndex) => (
-                    <div key={metricIndex} className="text-teal-600 font-semibold text-sm">
+                    <div key={metricIndex} className="text-ubuntu-blue-600 font-semibold text-sm">
                       {metric}
                     </div>
                   ))}
@@ -137,7 +159,7 @@ const Partnerships: React.FC = () => {
       <section className="py-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-800 mb-4">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
               Ways to Partner
             </h2>
             <p className="text-xl text-gray-600">
@@ -150,21 +172,21 @@ const Partnerships: React.FC = () => {
               const IconComponent = partnership.icon;
               return (
                 <div key={index} className="bg-white border border-gray-200 rounded-lg shadow-sm p-8 hover:shadow-md transition-shadow">
-                  <IconComponent className="w-12 h-12 text-teal-600 mb-4" />
-                  <h3 className="text-xl font-bold text-teal-800 mb-3">{partnership.title}</h3>
+                  <IconComponent className="w-12 h-12 text-ubuntu-blue-600 mb-4" />
+                  <h3 className="text-xl font-bold text-ubuntu-blue-800 mb-3">{partnership.title}</h3>
                   <p className="text-gray-700 mb-6">{partnership.description}</p>
                   
                   <h4 className="font-semibold text-gray-800 mb-3">Benefits:</h4>
                   <ul className="space-y-2 mb-6">
                     {partnership.benefits.map((benefit, benefitIndex) => (
                       <li key={benefitIndex} className="flex items-center text-gray-600">
-                        <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-ubuntu-orange-500 rounded-full mr-3"></span>
                         {benefit}
                       </li>
                     ))}
                   </ul>
                   
-                  <button className="w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-full font-semibold transition-colors">
+                  <button className="w-full bg-ubuntu-blue-600 hover:bg-ubuntu-blue-700 text-white py-2 rounded-full font-semibold transition-colors">
                     Learn More
                   </button>
                 </div>
@@ -175,7 +197,7 @@ const Partnerships: React.FC = () => {
       </section>
 
       {/* Current Partners */}
-      <section className="py-16 px-6 bg-teal-600 text-white">
+      <section className="py-16 px-6 bg-ubuntu-blue-600 text-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Valued Partners</h2>
@@ -186,12 +208,16 @@ const Partnerships: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {currentPartners.map((partner, index) => (
-              <div key={index} className="bg-teal-700 p-6 rounded-lg text-center">
-                <div className="h-16 bg-white/20 rounded flex items-center justify-center mb-4">
-                  <span className="text-sm">Partner Logo</span>
+              <div key={index} className="bg-ubuntu-blue-700 p-6 rounded-lg text-center">
+                <div className="h-16 bg-white/10 rounded flex items-center justify-center mb-4 p-2">
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`}
+                    className="max-h-full max-w-full object-contain"
+                  />
                 </div>
-                <h3 className="font-bold mb-1">{partner.name}</h3>
-                <p className="text-teal-200 text-sm">{partner.type}</p>
+                <h3 className="font-bold mb-1 text-sm">{partner.name}</h3>
+                <p className="text-ubuntu-blue-200 text-xs">{partner.type}</p>
               </div>
             ))}
           </div>
@@ -202,7 +228,7 @@ const Partnerships: React.FC = () => {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-teal-800 mb-4">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-4">
               Start Your Partnership Journey
             </h2>
           </div>
@@ -214,20 +240,20 @@ const Partnerships: React.FC = () => {
               { step: "3", title: "Launch & Impact", description: "Begin your partnership and start making a difference." }
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-12 h-12 bg-teal-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                <div className="w-12 h-12 bg-ubuntu-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
                   {item.step}
                 </div>
-                <h3 className="font-bold text-teal-800 mb-2">{item.title}</h3>
+                <h3 className="font-bold text-ubuntu-blue-800 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm">{item.description}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center">
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold px-8 py-3 rounded-full transition-colors mr-4">
+            <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-bold px-8 py-3 rounded-full transition-colors mr-4">
               Contact Our Team
             </button>
-            <button className="bg-teal-600 hover:bg-teal-700 text-white font-bold px-8 py-3 rounded-full transition-colors">
+            <button className="bg-ubuntu-blue-600 hover:bg-ubuntu-blue-700 text-white font-bold px-8 py-3 rounded-full transition-colors">
               Download Partnership Kit
             </button>
           </div>
