@@ -16,6 +16,7 @@ const Header = () => {
         !dropdownRef.current.contains(event.target as Node)
       ) {
         setActiveDropdown(null);
+        setIsMenuOpen(false);
       }
     };
 
@@ -293,54 +294,61 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden bg-ubuntu-blue-700 shadow-lg">
-            <div className="px-6 py-4 space-y-2">
-              {navigation.map((item) => (
-                <div key={item.name}>
-                  <button
-                    onClick={() => handleDropdownToggle(item.name)}
-                    className="flex items-center justify-between w-full px-4 py-3 text-left font-medium text-white hover:text-ubuntu-orange-300 hover:bg-ubuntu-blue-600 rounded-lg transition-colors"
-                  >
-                    <span>{item.name}</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === item.name ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-
-                  {activeDropdown === item.name && item.dropdownItems && (
-                    <div className="ml-4 mt-2 space-y-1">
-                      {item.dropdownItems.map((dropdownItem) => (
-                        <a
-                          key={dropdownItem.name}
-                          href={dropdownItem.link}
-                          onClick={handleDropdownItemClick}
-                          className="block px-4 py-3 rounded-lg hover:bg-ubuntu-blue-600 transition-colors"
-                        >
-                          <div className="text-white font-medium mb-1">
-                            {dropdownItem.name}
-                          </div>
-                          <div className="text-sm text-ubuntu-blue-200">
-                            {dropdownItem.description}
-                          </div>
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-              <a
-                href="/donate"
-                onClick={() => setIsMenuOpen(false)}
-                className="block w-full bg-white text-ubuntu-blue-700 px-4 py-3 rounded-lg font-semibold text-center mt-4 hover:bg-gray-100 transition-colors"
-              >
-                Donate
-              </a>
-            </div>
+        <div
+          className={`lg:hidden absolute top-full left-0 right-0 bg-ubuntu-blue-700 shadow-lg ${
+            isMenuOpen ? "block" : "hidden"
+          }`}
+        >
+          <div className="flex flex-col">
+            {navigation.map((item) => (
+              <div key={item.name} className="border-t border-ubuntu-blue-600">
+                <button
+                  className={`w-full text-left px-4 py-3 font-bold text-white bg-ubuntu-blue-600 hover:bg-ubuntu-blue-500 transition flex items-center justify-between`}
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === item.name ? null : item.name
+                    )
+                  }
+                >
+                  {item.name}
+                  <ChevronDown
+                    className={`w-4 h-4 ml-1 transition-transform ${
+                      activeDropdown === item.name ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {activeDropdown === item.name && item.dropdownItems && (
+                  <div className="bg-ubuntu-blue-800 px-4 py-2 space-y-2">
+                    {item.dropdownItems.map((dropdownItem) => (
+                      <a
+                        key={dropdownItem.name}
+                        href={dropdownItem.link}
+                        className="block px-2 py-2 text-gray-200 hover:text-ubuntu-orange-300 hover:underline transition text-sm"
+                        onClick={() => {
+                          setActiveDropdown(null);
+                          setIsMenuOpen(false);
+                        }}
+                      >
+                        <div className="font-medium">{dropdownItem.name}</div>
+                        <div className="text-xs text-ubuntu-blue-200 mt-1">
+                          {dropdownItem.description}
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            {/* Donate Button */}
+            <a
+              href="/donate"
+              className="w-full text-left px-4 py-3 font-bold bg-ubuntu-orange-500 text-white hover:bg-ubuntu-orange-600 transition border-t border-ubuntu-blue-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Donate
+            </a>
           </div>
-        )}
+        </div>
       </header>
     </>
   );

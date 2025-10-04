@@ -155,30 +155,6 @@ const Model: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <section className="py-20 px-6 bg-gradient-to-r from-teal-500 to-blue-600 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Ready to Bring Ubuntu-Afya to Your Community?
-          </h2>
-          
-          <p className="text-xl mb-8 leading-relaxed">
-            Join the movement of community-owned healthcare. Whether you're a community leader, 
-            healthcare professional, or partner organization, we can help you implement this 
-            sustainable model.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-teal-800 font-bold px-8 py-3 rounded-full transition-colors">
-              Start a Conversation
-            </button>
-            <button className="bg-white/20 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-full transition-colors border border-white">
-              Download Implementation Guide
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
