@@ -291,12 +291,19 @@ const Homepage: React.FC = () => {
                       ))}
                     </div>
 
-                    <button
+                    <Link
+                      to={
+                        area.title === "Primary Health Care" 
+                          ? "/primary-healthcare"
+                          : area.title === "Health Technology"
+                          ? "/health-technology"
+                          : "/research-evidence"
+                      }
                       className={`${buttonColors[area.color as keyof typeof buttonColors]} text-white font-bold px-6 py-3 rounded-full transition-colors flex items-center`}
                     >
                       <span>Learn More</span>
                       <ArrowRight className="w-4 h-4 ml-2" />
-                    </button>
+                    </Link>
                   </div>
 
                   {/* Image */}

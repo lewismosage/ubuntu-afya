@@ -1,12 +1,33 @@
 import { useState, useRef, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import logoImage from "../../assets/logo.jpg";
+
+interface SubItem {
+  name: string;
+  description: string;
+  link: string;
+}
+
+interface DropdownItem {
+  name: string;
+  description: string;
+  link: string;
+  subItems?: SubItem[];
+}
+
+interface NavigationItem {
+  name: string;
+  hasDropdown: boolean;
+  dropdownItems?: DropdownItem[];
+}
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeNestedDropdown, setActiveNestedDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const nestedHoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -16,6 +37,7 @@ const Header = () => {
         !dropdownRef.current.contains(event.target as Node)
       ) {
         setActiveDropdown(null);
+        setActiveNestedDropdown(null);
         setIsMenuOpen(false);
       }
     };
@@ -32,10 +54,13 @@ const Header = () => {
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current);
       }
+      if (nestedHoverTimeoutRef.current) {
+        clearTimeout(nestedHoverTimeoutRef.current);
+      }
     };
   }, []);
 
-  const navigation = [
+  const navigation: NavigationItem[] = [
     {
       name: "Our Story",
       hasDropdown: true,
@@ -55,6 +80,23 @@ const Header = () => {
           name: "Impact Reports",
           description: "Explore the data behind our mission and milestones.",
           link: "/impact",
+          subItems: [
+            {
+              name: "Primary Health Care",
+              description: "Learn about our Ubuntu-Afya kiosks and community healthcare model.",
+              link: "/primary-healthcare",
+            },
+            {
+              name: "Health Technology",
+              description: "Discover our STONE-HMIS® system and digital health solutions.",
+              link: "/health-technology",
+            },
+            {
+              name: "Research & Evidence",
+              description: "Explore our research findings and evidence-based practices.",
+              link: "/research-evidence",
+            },
+          ],
         },
         {
           name: "Partnerships",
@@ -103,7 +145,6 @@ const Header = () => {
             "Your gift brings life-saving care to communities in need.",
           link: "/donate",
         },
-        
         {
           name: "Events",
           description: "Join us for events that support global health.",
@@ -119,7 +160,6 @@ const Header = () => {
   ];
 
   const handleMouseEnter = (itemName: string) => {
-    // Clear any existing timeout
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
@@ -128,14 +168,13 @@ const Header = () => {
   };
 
   const handleMouseLeave = () => {
-    // Add a delay before closing the dropdown
     hoverTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 200); // 200ms delay
+      setActiveNestedDropdown(null);
+    }, 200);
   };
 
   const handleDropdownMouseEnter = () => {
-    // Clear timeout when mouse enters dropdown
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
@@ -143,23 +182,45 @@ const Header = () => {
   };
 
   const handleDropdownMouseLeave = () => {
-    // Close dropdown when mouse leaves dropdown area
     hoverTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
+      setActiveNestedDropdown(null);
+    }, 200);
+  };
+
+  const handleNestedItemMouseEnter = (itemName: string) => {
+    if (nestedHoverTimeoutRef.current) {
+      clearTimeout(nestedHoverTimeoutRef.current);
+      nestedHoverTimeoutRef.current = null;
+    }
+    setActiveNestedDropdown(itemName);
+  };
+
+  const handleNestedItemMouseLeave = () => {
+    nestedHoverTimeoutRef.current = setTimeout(() => {
+      setActiveNestedDropdown(null);
+    }, 200);
+  };
+
+  const handleNestedDropdownMouseEnter = () => {
+    if (nestedHoverTimeoutRef.current) {
+      clearTimeout(nestedHoverTimeoutRef.current);
+      nestedHoverTimeoutRef.current = null;
+    }
+  };
+
+  const handleNestedDropdownMouseLeave = () => {
+    nestedHoverTimeoutRef.current = setTimeout(() => {
+      setActiveNestedDropdown(null);
     }, 200);
   };
 
   const handleDropdownItemClick = () => {
-    // Close mobile menu but keep dropdown open for a moment
     setIsMenuOpen(false);
-
-    // Optionally close dropdown after a short delay
     setTimeout(() => {
       setActiveDropdown(null);
+      setActiveNestedDropdown(null);
     }, 300);
-
-    // If using standard anchor navigation, the page will navigate normally
-    // If using React Router, you would use navigate(itemLink) here instead
   };
 
   const handleDropdownToggle = (itemName: string) => {
@@ -232,27 +293,64 @@ const Header = () => {
                       <div className="max-w-7xl mx-auto px-6 py-8">
                         <div className="grid grid-cols-5 gap-0">
                           {item.dropdownItems?.map((dropdownItem, index) => (
-                            <a
+                            <div
                               key={dropdownItem.name}
-                              href={dropdownItem.link}
-                              onClick={handleDropdownItemClick}
-                              className={`px-6 py-6 hover:bg-ubuntu-blue-600 transition-colors group border-r border-ubuntu-blue-600 last:border-r-0 ${
-                                index === 0
-                                  ? "border-l-4 border-l-ubuntu-orange-400"
-                                  : ""
-                              }`}
+                              className="relative"
+                              onMouseEnter={() => dropdownItem.subItems && handleNestedItemMouseEnter(dropdownItem.name)}
+                              onMouseLeave={() => dropdownItem.subItems && handleNestedItemMouseLeave()}
                             >
-                              <h3 className="text-xl font-bold text-white group-hover:text-ubuntu-orange-300 transition-colors mb-3">
-                                {dropdownItem.name}
-                              </h3>
-                              <p className="text-sm text-ubuntu-blue-200 leading-relaxed">
-                                {dropdownItem.description}
-                              </p>
-                            </a>
+                              <a
+                                href={dropdownItem.link}
+                                onClick={handleDropdownItemClick}
+                                className={`block px-6 py-6 hover:bg-ubuntu-blue-600 transition-colors group border-r border-ubuntu-blue-600 last:border-r-0 ${
+                                  index === 0
+                                    ? "border-l-4 border-l-ubuntu-orange-400"
+                                    : ""
+                                }`}
+                              >
+                                <h3 className="text-xl font-bold text-white group-hover:text-ubuntu-orange-300 transition-colors mb-3 flex items-center justify-between">
+                                  {dropdownItem.name}
+                                  {dropdownItem.subItems && (
+                                    <ChevronRight className="w-5 h-5 text-ubuntu-orange-400" />
+                                  )}
+                                </h3>
+                                <p className="text-sm text-ubuntu-blue-200 leading-relaxed">
+                                  {dropdownItem.description}
+                                </p>
+                              </a>
+
+                              {/* Nested Dropdown on the Right */}
+                              {dropdownItem.subItems && activeNestedDropdown === dropdownItem.name && (
+                                <div
+                                  className="absolute left-full top-0 w-80 bg-ubuntu-blue-800 shadow-2xl border-l-4 border-ubuntu-orange-400 z-50"
+                                  onMouseEnter={handleNestedDropdownMouseEnter}
+                                  onMouseLeave={handleNestedDropdownMouseLeave}
+                                >
+                                  {dropdownItem.subItems.map((subItem, subIndex) => (
+                                    <a
+                                      key={subItem.name}
+                                      href={subItem.link}
+                                      onClick={handleDropdownItemClick}
+                                      className={`block px-6 py-5 hover:bg-ubuntu-blue-700 transition-colors group ${
+                                        subIndex !== dropdownItem.subItems!.length - 1
+                                          ? "border-b border-ubuntu-blue-700"
+                                          : ""
+                                      }`}
+                                    >
+                                      <h4 className="text-lg font-bold text-white group-hover:text-ubuntu-orange-300 transition-colors mb-2">
+                                        {subItem.name}
+                                      </h4>
+                                      <p className="text-sm text-ubuntu-blue-200 leading-relaxed">
+                                        {subItem.description}
+                                      </p>
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           ))}
                           {/* Add empty columns to fill the 5-column grid if needed */}
-                          {item.dropdownItems &&
-                            item.dropdownItems.length < 5 &&
+                          {item.dropdownItems && item.dropdownItems.length < 5 &&
                             Array.from({
                               length: 5 - item.dropdownItems.length,
                             }).map((_, index) => (
@@ -317,23 +415,66 @@ const Header = () => {
                     }`}
                   />
                 </button>
-                {activeDropdown === item.name && item.dropdownItems && (
+                {activeDropdown === item.name && (
                   <div className="bg-ubuntu-blue-800 px-4 py-2 space-y-2">
-                    {item.dropdownItems.map((dropdownItem) => (
-                      <a
-                        key={dropdownItem.name}
-                        href={dropdownItem.link}
-                        className="block px-2 py-2 text-gray-200 hover:text-ubuntu-orange-300 hover:underline transition text-sm"
-                        onClick={() => {
-                          setActiveDropdown(null);
-                          setIsMenuOpen(false);
-                        }}
-                      >
-                        <div className="font-medium">{dropdownItem.name}</div>
-                        <div className="text-xs text-ubuntu-blue-200 mt-1">
-                          {dropdownItem.description}
+                    {item.dropdownItems?.map((dropdownItem) => (
+                      <div key={dropdownItem.name}>
+                        <div
+                          className="block px-2 py-2 text-gray-200 hover:text-ubuntu-orange-300 transition text-sm cursor-pointer"
+                          onClick={() => {
+                            if (dropdownItem.subItems) {
+                              setActiveNestedDropdown(
+                                activeNestedDropdown === dropdownItem.name
+                                  ? null
+                                  : dropdownItem.name
+                              );
+                            } else {
+                              window.location.href = dropdownItem.link;
+                              setActiveDropdown(null);
+                              setIsMenuOpen(false);
+                            }
+                          }}
+                        >
+                          <div className="font-medium flex items-center justify-between">
+                            {dropdownItem.name}
+                            {dropdownItem.subItems && (
+                              <ChevronDown
+                                className={`w-4 h-4 transition-transform ${
+                                  activeNestedDropdown === dropdownItem.name
+                                    ? "rotate-180"
+                                    : ""
+                                }`}
+                              />
+                            )}
+                          </div>
+                          <div className="text-xs text-ubuntu-blue-200 mt-1">
+                            {dropdownItem.description}
+                          </div>
                         </div>
-                      </a>
+                        {/* Mobile Nested Items */}
+                        {dropdownItem.subItems &&
+                          activeNestedDropdown === dropdownItem.name && (
+                            <div className="ml-4 mt-2 space-y-2 border-l-2 border-ubuntu-orange-400 pl-4">
+                              {dropdownItem.subItems.map((subItem) => (
+                                <a
+                                  key={subItem.name}
+                                  href={subItem.link}
+                                  className="block px-2 py-2 text-gray-300 hover:text-ubuntu-orange-300 hover:underline transition text-xs"
+                                  onClick={() => {
+                                    setActiveDropdown(null);
+                                    setActiveNestedDropdown(null);
+                                    setIsMenuOpen(false);
+                                  }}
+                                >
+                                  <div className="font-medium">{subItem.name}</div>
+                                  <div className="text-xs text-ubuntu-blue-300 mt-1">
+                                    {subItem.description}
+                                  </div>
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                      </div>
                     ))}
                   </div>
                 )}

@@ -3,6 +3,9 @@ import { Toaster } from "react-hot-toast";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Impact from "./pages/Impact";
+import PrimaryHealthCare from "./pages/PrimaryHealthCare";
+import HealthTechnology from "./pages/HealthTechnology";
+import ResearchEvidence from "./pages/ResearchEvidence";
 import Overview from "./pages/Overview";
 import OurPeople from "./pages/OurPeople";
 import Updates from "./pages/Updates";
@@ -23,6 +26,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/volunteer" element={<Volunteer />} />
             <Route path="/impact" element={<Impact />} />
+            <Route path="/primary-healthcare" element={<PrimaryHealthCare />} />
+            <Route path="/health-technology" element={<HealthTechnology />} />
+            <Route path="/research-evidence" element={<ResearchEvidence />} />
             <Route path="/overview" element={<Overview />} />
             <Route path="/our-people" element={<OurPeople />} />
             <Route path="/updates" element={<Updates />} />
@@ -32,8 +38,6 @@ function App() {
             <Route path="/our-model" element={<Model />} />
             <Route path="/partnerships" element={<Partnerships />} />
             <Route path="/events" element={<Events />} />
-            
-            
           </Routes>
         </Layout>
         <Toaster
