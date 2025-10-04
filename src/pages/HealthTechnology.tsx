@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, Cpu, Database, Smartphone, Cloud, Shield, BarChart3 } from "lucide-react";
 import HealthTechnologyImage from "../assets/HealthTechnology.jpg";
 import vision1Image from "../assets/vission-1.jpg";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 const HealthTechnology: React.FC = () => {
   const features = [
@@ -56,6 +57,7 @@ const HealthTechnology: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <ScrollToTop />
       {/* Hero Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-ubuntu-orange-600 to-ubuntu-orange-500 text-white">
         <div className="max-w-7xl mx-auto">

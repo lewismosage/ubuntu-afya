@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, Target, Users, Heart, MapPin } from "lucide-react";
 import UbuntuAfyaKiosk from "../assets/Ubuntu-Afya-Kiosks.jpg";
 import hospitalWaitingImage from "../assets/Ubuntu-Afya-Kiosks.jpg";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 const PrimaryHealthCare: React.FC = () => {
   const services = [
@@ -36,9 +37,22 @@ const PrimaryHealthCare: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <ScrollToTop />
       {/* Hero Section */}
-      <section className="py-20 px-6 bg-gradient-to-br from-ubuntu-blue-900 to-ubuntu-blue-800 text-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-20 px-6 text-white overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${UbuntuAfyaKiosk})`
+          }}
+        />
+        
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-ubuntu-blue-900/80 to-ubuntu-blue-1000/80"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="mb-6">
             <span className="bg-ubuntu-orange-500 text-white font-bold px-4 py-2 text-sm uppercase tracking-wide">
               PRIMARY HEALTH CARE
@@ -208,27 +222,6 @@ const PrimaryHealthCare: React.FC = () => {
                 conditions through regular monitoring and care.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 px-6 bg-ubuntu-blue-600 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Support Primary Healthcare in Rural Communities
-          </h2>
-          <p className="text-xl mb-8 leading-relaxed">
-            Help us expand our Ubuntu-Afya kiosk network to reach more communities 
-            in need of essential healthcare services.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-              Support Our Work
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-ubuntu-blue-600 transition-colors">
-              Learn About Volunteering
-            </button>
           </div>
         </div>
       </section>

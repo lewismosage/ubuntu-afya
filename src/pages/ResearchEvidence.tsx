@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, BookOpen, GraduationCap, FileText, Award, Users, Target } from "lucide-react";
 import medicalResearchImage from "../assets/medical-research.jpg";
 import vision2Image from "../assets/vission-2.jpg";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 const ResearchEvidence: React.FC = () => {
   const researchAreas = [
@@ -57,6 +58,7 @@ const ResearchEvidence: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <ScrollToTop />
       {/* Hero Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-ubuntu-blue-900 to-ubuntu-blue-800 text-white">
         <div className="max-w-7xl mx-auto">
