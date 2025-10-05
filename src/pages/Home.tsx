@@ -6,6 +6,8 @@ import HealthcareCrisis from "./HealthcareCrisis";
 import UbuntuAfyaKiosk from "../assets/Ubuntu-Afya-Kiosks.jpg";
 import HealthTechnology from "../assets/HealthTechnology.jpg";
 import medicalResearchImage from "../assets/medical-research.jpg";
+import ourModal from "../assets/OurModal.jpg";
+import ourStrategy from "../assets/our-strategy.jpg";
 
 interface CounterProps {
   end: number;
@@ -108,7 +110,7 @@ const Homepage: React.FC = () => {
             <div className="relative">
               <div className="relative rounded overflow-hidden shadow-2xl">
                 <img 
-                  src="/src/assets/our-modal.JPG" 
+                  src={ourModal} 
                   alt="Ubuntu Afya community healthcare model"
                   className="w-full h-96 object-cover"
                 />
@@ -127,7 +129,7 @@ const Homepage: React.FC = () => {
             <div className="relative order-2 lg:order-1">
               <div className="relative rounded overflow-hidden shadow-2xl">
                 <img 
-                  src="/src/assets/our-strategy.jpg" 
+                  src={ourStrategy} 
                   alt="Healthcare strategy and innovation"
                   className="w-full h-96 object-cover"
                 />
