@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowRight, Users, Heart, MapPin, Baby,  MessageCircle } from "lucide-react";
 import UbuntuAfyaKiosk from "../assets/Ubuntu-Afya-Kiosks.jpg";
-import Mfangano from "../assets/Mfangano.jpg";
+import MfanganoCommunity from "../assets/Mfangano-Community.jpg";
 import hospitalWaitingImage from "../assets/Ubuntu-Afya-Kiosks.jpg";
 import ScrollToTop from "../components/common/ScrollToTop";
 
@@ -174,7 +174,7 @@ const PrimaryHealthCare: React.FC = () => {
             <div className="relative">
               <div className="rounded-lg overflow-hidden shadow-2xl">
                 <img 
-                  src={Mfangano} 
+                  src={MfanganoCommunity} 
                   alt="Ubuntu-Afya Kiosk providing healthcare services"
                   className="w-full h-96 object-cover"
                 />
