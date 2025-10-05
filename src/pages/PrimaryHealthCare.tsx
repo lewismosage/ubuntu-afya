@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Target, Users, Heart, MapPin, Stethoscope, Baby, Activity, MessageCircle } from "lucide-react";
+import { ArrowRight, Users, Heart, MapPin, Baby,  MessageCircle } from "lucide-react";
 import UbuntuAfyaKiosk from "../assets/Ubuntu-Afya-Kiosks.jpg";
 import Mfangano from "../assets/Mfangano.jpg";
 import hospitalWaitingImage from "../assets/Ubuntu-Afya-Kiosks.jpg";
