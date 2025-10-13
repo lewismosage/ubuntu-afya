@@ -1,203 +1,88 @@
 import React from "react";
-import overviewImage from "../assets/overview.avif";
 import pediatricImage from "../assets/pediatric.jpg";
-import overviewhero from "../assets/healthier.jpg";
-import overviewHeroImage from "../assets/OverviewHero.jpg";
-import clinicImage from "../assets/clinic.avif";
-import mission2Image from "../assets/mission-2.jpg";
-import mission3Image from "../assets/mission-3.jpg";
-import vision1Image from "../assets/vission-1.jpg";
-import vision2Image from "../assets/vission-2.jpg";
+import ourstory from "../assets/OurStory.jpg";
 
 const Overview: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* First Section - Hero with split layout */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          {/* Overview label */}
-          <div className="mb-12">
+    <div className="min-h-screen bg-white">
+      {/* Hero Section with Background Image */}
+      <section className="relative py-32 px-6 bg-gradient-to-br from-ubuntu-blue-900/80 to-ubuntu-blue-600/80 text-white min-h-[80vh]">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={ourstory}
+            alt="Building a healthier future for every community"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
+          <div className="mb-6">
             <span className="bg-ubuntu-orange-500 text-white font-bold px-4 py-2 text-sm uppercase tracking-wide">
               OVERVIEW
             </span>
           </div>
 
-          {/* Split layout - Title left, description right */}
-          <div className="grid lg:grid-cols-2 gap-16 mb-16">
-            <div>
-              <h1 className="text-5xl lg:text-6xl font-bold text-ubuntu-blue-800 leading-tight">
-                Building a Healthier Future for Every Community
-              </h1>
-            </div>
-            <div className="flex items-center">
-              <p className="text-xl text-gray-600 leading-relaxed">
-                At Ubuntu Afya, we believe everyone no matter where they live
-                deserves access to high quality, compassionate care.
-              </p>
-            </div>
-          </div>
-
-          {/* Hero image */}
-          <div className="w-full h-96 rounded-lg mb-16 overflow-hidden shadow-lg">
-            <img
-              src={overviewhero}
-              alt="Building a healthier future for every community"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Our Story
+          </h1>
         </div>
       </section>
 
-      {/* Mission & Vision Section */}
+      {/* Who We Are Section */}
       <section className="py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          {/* Mission & Vision with images */}
-          <div className="grid md:grid-cols-2 gap-16 mb-20">
-            {/* Mission column */}
-            <div className="text-left">
-              <h3 className="text-3xl font-bold text-ubuntu-orange-600 mb-6">
-                Our Mission
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-ubuntu-blue-800 mb-8">
+              Who we are
+            </h2>
+            <p className="text-xl text-gray-700 leading-relaxed mb-8">
+              Ubuntu Afya is rooted in a belief that every person deserves
+              access to quality healthcare, no matter where they live. We are
+              the U.S. partner of Afya Research Africa (ARA), a Kenyan
+              non-profit that has pioneered community-owned health systems for
+              over a decade.
+            </p>
+
+            <p className="text-xl text-gray-700 leading-relaxed mb-8">
+              Together, we strengthen locally led solutions by connecting rural
+              families with care through Ubuntu-Afya Kiosks, advancing digital
+              health innovation through STONE-HMIS®, and equipping health
+              workers with evidence and training that improves decision-making.
+            </p>
+
+            <p className="text-xl text-gray-700 leading-relaxed">
+              Our work is built on collaboration with communities, governments
+              and global partners. We exist because we know lasting change comes
+              when health systems are owned and sustained by the people they
+              serve.
+            </p>
+          </div>
+
+          {/* Mission & Vision */}
+          <div className="text-center space-y-16">
+            {/* Mission */}
+            <div>
+              <h3 className="text-5xl font-bold text-ubuntu-blue-800 mb-8">
+                Mission
               </h3>
-              <p className="text-xl text-ubuntu-blue-800 font-semibold mb-8 leading-relaxed">
-                To strengthen community owned health systems and expand access
+              <p className="text-2xl text-gray-700 italic leading-relaxed max-w-4xl mx-auto">
+                To strengthen community-owned health systems and expand access
                 to affordable care in Kenya's underserved communities.
               </p>
-
-              {/* Mission images grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="h-48 rounded overflow-hidden">
-                  <img
-                    src={clinicImage}
-                    alt="Ubuntu Afya clinic providing healthcare services"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="h-48 rounded overflow-hidden">
-                  <img
-                    src={mission2Image}
-                    alt="Ubuntu Afya healthcare worker providing care"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="h-48 rounded overflow-hidden col-span-2">
-                  <img
-                    src={mission3Image}
-                    alt="Ubuntu Afya medical center facility"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
             </div>
 
-            {/* Vision column */}
-            <div className="text-left">
-              <h3 className="text-3xl font-bold text-ubuntu-orange-600 mb-6">
-                Our Vision
+            {/* Vision */}
+            <div>
+              <h3 className="text-5xl font-bold text-ubuntu-blue-800 mb-8">
+                Vision
               </h3>
-              <p className="text-xl text-ubuntu-blue-800 font-semibold mb-8 leading-relaxed">
+              <p className="text-2xl text-gray-700 italic leading-relaxed max-w-4xl mx-auto">
                 A future where African health systems are locally led, resilient
                 and equitable
               </p>
-
-              {/* Vision images grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="h-48 rounded overflow-hidden">
-                  <img
-                    src={vision1Image}
-                    alt="Healthcare worker using StoneHMIS system"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="h-48 rounded overflow-hidden">
-                  <img
-                    src={vision2Image}
-                    alt="Laboratory technician examining samples under microscope"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
             </div>
           </div>
-
-          {/* Our Approach Section - Redesigned */}
-          <div className="max-w-5xl mx-auto">
-            <h3 className="text-3xl font-bold text-ubuntu-blue-800 mb-8 text-center">
-              Our Approach
-            </h3>
-            
-            {/* Opening statement */}
-            <p className="text-2xl text-ubuntu-blue-900 font-semibold mb-12 text-center leading-relaxed">
-              That's why we work alongside communities to build healthcare systems
-              that last.
-            </p>
-
-            {/* Three pillars in cards */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                <div className="h-2 w-12 bg-ubuntu-orange-500 mb-4"></div>
-                <p className="text-lg text-gray-800 font-medium leading-relaxed">
-                  Our work isn't just about building clinics — it's about building
-                  <span className="text-ubuntu-blue-800 font-bold"> systems</span>.
-                </p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                <div className="h-2 w-12 bg-ubuntu-orange-500 mb-4"></div>
-                <p className="text-lg text-gray-800 font-medium leading-relaxed">
-                  Not just access, but
-                  <span className="text-ubuntu-blue-800 font-bold"> excellence</span>.
-                </p>
-              </div>
-              
-              <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                <div className="h-2 w-12 bg-ubuntu-orange-500 mb-4"></div>
-                <p className="text-lg text-gray-800 font-medium leading-relaxed">
-                  Not just care, but
-                  <span className="text-ubuntu-blue-800 font-bold"> compassion and continuity</span>.
-                </p>
-              </div>
-            </div>
-
-            {/* Closing statement */}
-            <p className="text-xl text-gray-700 text-center leading-relaxed">
-              We bring projects to life with local teams, essential services, and
-              sustainable systems that meet real needs, every day.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 2030 Goals Section */}
-      <section className="py-20 px-6 bg-white text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-ubuntu-blue-800 mb-4">
-            Our goal by 2030:
-          </h2>
-
-          <div className="text-4xl font-bold mb-12 text-ubuntu-blue-800">
-            3.6 million patients served, countless communities strengthened.
-          </div>
-
-          <p className="text-lg mb-16 leading-relaxed text-gray-700">
-            We'll get there by deepening our programs, expanding innovative care
-            models, and building healthcare systems that last... led by local
-            teams, sustained by smart investment.
-          </p>
-
-          {/* Overview image */}
-          <div className="w-full max-w-4xl mx-auto mb-16">
-            <div className="w-full h-100 rounded-lg overflow-hidden shadow-2xl">
-              <img
-                src={overviewHeroImage}
-                alt="Healthcare worker taking patient's blood pressure - Ubuntu Afya in action"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          <button className="bg-ubuntu-orange-500 hover:bg-ubuntu-orange-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-200">
-            GET INVOLVED
-          </button>
         </div>
       </section>
 

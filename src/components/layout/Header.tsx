@@ -24,7 +24,9 @@ interface NavigationItem {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [activeNestedDropdown, setActiveNestedDropdown] = useState<string | null>(null);
+  const [activeNestedDropdown, setActiveNestedDropdown] = useState<
+    string | null
+  >(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const nestedHoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -66,7 +68,7 @@ const Header = () => {
       hasDropdown: true,
       dropdownItems: [
         {
-          name: "Overview",
+          name: "Our Story",
           description: "Our mission, values, and vision for the future.",
           link: "/overview",
         },
@@ -77,26 +79,10 @@ const Header = () => {
           link: "/our-people",
         },
         {
-          name: "Impact Reports",
-          description: "Explore the data behind our mission and milestones.",
-          link: "/impact",
-          subItems: [
-            {
-              name: "Primary Health Care",
-              description: "Learn about our Ubuntu-Afya kiosks and community healthcare model.",
-              link: "/primary-healthcare",
-            },
-            {
-              name: "Health Technology",
-              description: "Discover our STONE-HMIS® system and digital health solutions.",
-              link: "/health-technology",
-            },
-            {
-              name: "Research & Evidence",
-              description: "Explore our research findings and evidence-based practices.",
-              link: "/research-evidence",
-            },
-          ],
+          name: "Our Model",
+          description:
+            "Discover how our sustainable, locally led model delivers long-term healthcare solutions.",
+          link: "/our-model",
         },
         {
           name: "Partnerships",
@@ -107,25 +93,61 @@ const Header = () => {
       ],
     },
     {
-      name: "Our Work",
+      name: "Our Impact",
       hasDropdown: true,
       dropdownItems: [
         {
-          name: "Our Model",
+          name: "Primary Health Care",
           description:
-            "Discover how our sustainable, locally led model delivers long-term healthcare solutions.",
-          link: "/our-model",
+            "Learn about our Ubuntu-Afya kiosks and community healthcare model.",
+          link: "/primary-healthcare",
         },
         {
-          name: "Our Strategy",
+          name: "Health Technology",
+          description:
+            "Discover our STONE-HMIS® system and digital health solutions.",
+          link: "/health-technology",
+        },
+        {
+          name: "Research & Evidence",
+          description:
+            "Explore our research findings and evidence-based practices.",
+          link: "/research-evidence",
+        },
+      ],
+    },
+    {
+      name: "Our Strategy",
+      hasDropdown: true,
+      dropdownItems: [
+        {
+          name: "Strategic Plan 2022 -2026",
           description:
             "Discover how our sustainable, locally led model delivers long-term healthcare solutions.",
           link: "/our-strategy",
         },
+      ],
+    },
+    {
+      name: "Latest Updates",
+      hasDropdown: true,
+      dropdownItems: [
         {
-          name: "Latest Updates",
+          name: "Latest News",
           description:
             "Stay informed with our latest news, inspiring stories, research findings, and impact reports from the field.",
+          link: "/updates",
+        },
+        {
+          name: "Reports",
+          description:
+            "Explore our latest reports, including annual impact reports, research findings, and more.",
+          link: "/updates",
+        },
+        {
+          name: "Inciatives",
+          description:
+            "Explore our latest initiatives, including our community-led healthcare model, digital health solutions, and more.",
           link: "/updates",
         },
       ],
@@ -223,26 +245,12 @@ const Header = () => {
     }, 300);
   };
 
-  const handleDropdownToggle = (itemName: string) => {
-    setActiveDropdown(activeDropdown === itemName ? null : itemName);
-  };
-
   return (
     <>
       <header
-        className="bg-ubuntu-blue-600 sticky top-0 z-50 relative"
+        className="bg-white sticky top-0 z-50 relative shadow-md"
         ref={dropdownRef}
       >
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          ></div>
-        </div>
-
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
@@ -255,7 +263,7 @@ const Header = () => {
                 />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">
+                <h1 className="text-2xl font-bold text-ubuntu-blue-600">
                   Ubuntu <span className="text-ubuntu-orange-500">Afya</span>
                 </h1>
               </div>
@@ -271,16 +279,11 @@ const Header = () => {
                   onMouseLeave={handleMouseLeave}
                 >
                   <button
-                    className={`flex items-center space-x-1 font-medium transition-all duration-200 px-4 py-2 rounded-lg text-white hover:text-ubuntu-orange-300 ${
-                      activeDropdown === item.name ? "text-ubuntu-orange-300" : ""
+                    className={`flex items-center space-x-1 font-bold transition-all duration-200 px-4 py-2 rounded-lg text-ubuntu-blue-600 hover:text-ubuntu-blue-700 ${
+                      activeDropdown === item.name ? "text-ubuntu-blue-700" : ""
                     }`}
                   >
                     <span>{item.name}</span>
-                    {activeDropdown === item.name ? (
-                      <span className="text-ubuntu-orange-300 text-lg">×</span>
-                    ) : (
-                      <span className="text-white text-lg">+</span>
-                    )}
                   </button>
 
                   {/* Full Width Horizontal Dropdown Menu */}
@@ -296,8 +299,14 @@ const Header = () => {
                             <div
                               key={dropdownItem.name}
                               className="relative"
-                              onMouseEnter={() => dropdownItem.subItems && handleNestedItemMouseEnter(dropdownItem.name)}
-                              onMouseLeave={() => dropdownItem.subItems && handleNestedItemMouseLeave()}
+                              onMouseEnter={() =>
+                                dropdownItem.subItems &&
+                                handleNestedItemMouseEnter(dropdownItem.name)
+                              }
+                              onMouseLeave={() =>
+                                dropdownItem.subItems &&
+                                handleNestedItemMouseLeave()
+                              }
                             >
                               <a
                                 href={dropdownItem.link}
@@ -320,37 +329,46 @@ const Header = () => {
                               </a>
 
                               {/* Nested Dropdown on the Right */}
-                              {dropdownItem.subItems && activeNestedDropdown === dropdownItem.name && (
-                                <div
-                                  className="absolute left-full top-0 w-80 bg-ubuntu-blue-800 shadow-2xl border-l-4 border-ubuntu-orange-400 z-50"
-                                  onMouseEnter={handleNestedDropdownMouseEnter}
-                                  onMouseLeave={handleNestedDropdownMouseLeave}
-                                >
-                                  {dropdownItem.subItems.map((subItem, subIndex) => (
-                                    <a
-                                      key={subItem.name}
-                                      href={subItem.link}
-                                      onClick={handleDropdownItemClick}
-                                      className={`block px-6 py-5 hover:bg-ubuntu-blue-700 transition-colors group ${
-                                        subIndex !== dropdownItem.subItems!.length - 1
-                                          ? "border-b border-ubuntu-blue-700"
-                                          : ""
-                                      }`}
-                                    >
-                                      <h4 className="text-lg font-bold text-white group-hover:text-ubuntu-orange-300 transition-colors mb-2">
-                                        {subItem.name}
-                                      </h4>
-                                      <p className="text-sm text-ubuntu-blue-200 leading-relaxed">
-                                        {subItem.description}
-                                      </p>
-                                    </a>
-                                  ))}
-                                </div>
-                              )}
+                              {dropdownItem.subItems &&
+                                activeNestedDropdown === dropdownItem.name && (
+                                  <div
+                                    className="absolute left-full top-0 w-80 bg-ubuntu-blue-800 shadow-2xl border-l-4 border-ubuntu-orange-400 z-50"
+                                    onMouseEnter={
+                                      handleNestedDropdownMouseEnter
+                                    }
+                                    onMouseLeave={
+                                      handleNestedDropdownMouseLeave
+                                    }
+                                  >
+                                    {dropdownItem.subItems.map(
+                                      (subItem, subIndex) => (
+                                        <a
+                                          key={subItem.name}
+                                          href={subItem.link}
+                                          onClick={handleDropdownItemClick}
+                                          className={`block px-6 py-5 hover:bg-ubuntu-blue-700 transition-colors group ${
+                                            subIndex !==
+                                            dropdownItem.subItems!.length - 1
+                                              ? "border-b border-ubuntu-blue-700"
+                                              : ""
+                                          }`}
+                                        >
+                                          <h4 className="text-lg font-bold text-white group-hover:text-ubuntu-orange-300 transition-colors mb-2">
+                                            {subItem.name}
+                                          </h4>
+                                          <p className="text-sm text-ubuntu-blue-200 leading-relaxed">
+                                            {subItem.description}
+                                          </p>
+                                        </a>
+                                      )
+                                    )}
+                                  </div>
+                                )}
                             </div>
                           ))}
                           {/* Add empty columns to fill the 5-column grid if needed */}
-                          {item.dropdownItems && item.dropdownItems.length < 5 &&
+                          {item.dropdownItems &&
+                            item.dropdownItems.length < 5 &&
                             Array.from({
                               length: 5 - item.dropdownItems.length,
                             }).map((_, index) => (
@@ -371,7 +389,7 @@ const Header = () => {
             <div className="hidden lg:flex items-center">
               <a
                 href="/donate"
-                className="bg-white border-2 border-white text-ubuntu-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200"
+                className="bg-ubuntu-orange-500 border-2 border-ubuntu-orange-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-ubuntu-orange-600 hover:border-ubuntu-orange-600 transition-all duration-200"
               >
                 Donate
               </a>
@@ -380,7 +398,7 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-white hover:bg-ubuntu-blue-700 transition-colors"
+              className="lg:hidden p-2 rounded-lg text-ubuntu-blue-600 hover:bg-gray-100 transition-colors"
             >
               {isMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -466,7 +484,9 @@ const Header = () => {
                                     setIsMenuOpen(false);
                                   }}
                                 >
-                                  <div className="font-medium">{subItem.name}</div>
+                                  <div className="font-medium">
+                                    {subItem.name}
+                                  </div>
                                   <div className="text-xs text-ubuntu-blue-300 mt-1">
                                     {subItem.description}
                                   </div>
