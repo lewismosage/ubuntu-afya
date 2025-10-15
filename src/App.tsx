@@ -10,6 +10,7 @@ import Overview from "./pages/Overview";
 import OurPeople from "./pages/OurPeople";
 import Updates from "./pages/Updates";
 import Reports from "./pages/Reports";
+import Initiatives from "./pages/Initiatives";
 import Donate from "./pages/Donate";
 import Contact from "./pages/Contact";
 import Strategy from "./pages/Strategy";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/our-people" element={<OurPeople />} />
             <Route path="/updates" element={<Updates />} />
             <Route path="/reports" element={<Reports />} />
+            <Route path="/initiatives" element={<Initiatives />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/our-strategy" element={<Strategy />} />

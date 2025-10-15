@@ -145,10 +145,10 @@ const Header = () => {
           link: "/reports",
         },
         {
-          name: "Inciatives",
+          name: "Initiatives",
           description:
             "Explore our latest initiatives, including our community-led healthcare model, digital health solutions, and more.",
-          link: "/updates",
+          link: "/initiatives",
         },
       ],
     },
