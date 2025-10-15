@@ -142,7 +142,7 @@ const Header = () => {
           name: "Reports",
           description:
             "Explore our latest reports, including annual impact reports, research findings, and more.",
-          link: "/updates",
+          link: "/reports",
         },
         {
           name: "Inciatives",
